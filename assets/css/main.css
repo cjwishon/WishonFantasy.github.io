@@ -5,6 +5,8 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
+
+
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
 pre, a, abbr, acronym, address, big, cite,
@@ -1477,6 +1479,7 @@ table {
       border-bottom: 0; }
     table.alt tfoot {
       border-top: 0; }
+    
 
 /* Button */
 input[type="submit"],
@@ -2077,7 +2080,9 @@ button,
   display: flex;
   border-bottom: solid 5px #f56a6a;
   padding: 6em 0 1em 0;
-  position: relative; }
+  background-color: white;
+  position: relative;
+}
   #header > * {
     -moz-flex: 1;
     -webkit-flex: 1;
