@@ -1,0 +1,176 @@
+
+{
+	"seasonFantasyTeamData":
+	[
+		{
+			"year":2020,
+			"standings":[
+				{
+					"rank":1,
+					"team":"LAMARS Kamaravirus 2",
+					"owner":"B. Bettinger",
+					"wins":9,
+					"pointFor":1730.68,
+					"pointsAgainst":1395.86
+				},
+				{
+					"rank":2,
+					"team":"Face Down Mask Up",
+					"owner":"J. Butler",
+					"wins":9,
+					"pointFor":1545.02,
+					"pointsAgainst":1436.64
+				},
+				{
+					"rank":3,
+					"team":"Einhorn is Finkle",
+					"owner":"P. James",
+					"wins":7,
+					"pointFor":1650.48,
+					"pointsAgainst":1593.52
+				},
+				{
+					"rank":4,
+					"team":"Fresh Prince of Helaire",
+					"owner":"K. Sanderson",
+					"wins":7,
+					"pointFor":1625.02,
+					"pointsAgainst":1395.32
+				},
+				{
+					"rank":5,
+					"team":"Buffalo David Muir",
+					"owner":"R. Spiegel",
+					"wins":6,
+					"pointFor":1469.44,
+					"pointsAgainst":1515.52
+				},
+				{
+					"rank":6,
+					"team":"AJ Green-Seers",
+					"owner":"C. Spano",
+					"wins":5,
+					"pointFor":1459.66,
+					"pointsAgainst":1612.42
+				},
+				{
+					"rank":7,
+					"team":"Pimpin' Ain't Breesy",
+					"owner":"C. Wishon",
+					"wins":5,
+					"pointFor":1424.16,
+					"pointsAgainst":1457.06
+				},
+				{
+					"rank":8,
+					"team":"Ryan Tanne-HALLSTARS",
+					"owner":"C. Balint",
+					"wins":5,
+					"pointFor":1412.42,
+					"pointsAgainst":1509.48
+				},
+				{
+					"rank":9,
+					"team":"Wentz Ass Philly",
+					"owner":"B. Ninni",
+					"wins":4,
+					"pointFor":1346.96,
+					"pointsAgainst":1629.44
+				},
+				{
+					"rank":10,
+					"team":"Brock Lobster-weiler",
+					"owner":"C. Ida",
+					"wins":3,
+					"pointFor":1355.52,
+					"pointsAgainst":1504.10
+				}
+			]
+		},
+		{
+			"year":2019,
+			"standings":[
+				{
+					"rank":1,
+					"team":"99 Problems Kap Ain't One",
+					"owner":"B. Bettinger",
+					"wins":9,
+					"pointFor":1715.14,
+					"pointsAgainst":1384.90
+				},
+				{
+					"rank":2,
+					"team":"Buffalo NathanPunterman",
+					"owner":"R. Spiegel",
+					"wins":9,
+					"pointFor":1615.46,
+					"pointsAgainst":1384.90
+				},
+				{
+					"rank":3,
+					"team":"Brock Lobster-weiler",
+					"owner":"C. Ida",
+					"wins":8,
+					"pointFor":1545.50,
+					"pointsAgainst":1332.80
+				},
+				{
+					"rank":4,
+					"team":"Golden Taint",
+					"owner":"C. Wishon",
+					"wins":7,
+					"pointFor":1625.80,
+					"pointsAgainst":1526.16
+				},
+				{
+					"rank":5,
+					"team":"For Kicks and Skittles",
+					"owner":"K. Sanderson",
+					"wins":7,
+					"pointFor":1449.24,
+					"pointsAgainst":1441.64
+				},
+				{
+					"rank":6,
+					"team":"Ryan Tanne-HALLSTARS",
+					"owner":"C. Balint",
+					"wins":6,
+					"pointFor":1530.76,
+					"pointsAgainst":1611.22
+				},
+				{
+					"rank":7,
+					"team":"Incognito Mode",
+					"owner":"B. Ninni",
+					"wins":5,
+					"pointFor":1454.00,
+					"pointsAgainst":1473.74
+				},
+				{
+					"rank":8,
+					"team":"AJ Green-Seers",
+					"owner":"C. Spano",
+					"wins":5,
+					"pointFor":1335.66,
+					"pointsAgainst":1337.5
+				},
+				{
+					"rank":9,
+					"team":"Arya ready for some football?",
+					"owner":"D. Adams",
+					"wins":2,
+					"pointFor":1183.74,
+					"pointsAgainst":1493.56
+				},
+				{
+					"rank":10,
+					"team":"Fermented Crabtree",
+					"owner":"J. Butler",
+					"wins":2,
+					"pointFor":1071.44,
+					"pointsAgainst":1540.32
+				}
+			]
+		}
+	]
+}

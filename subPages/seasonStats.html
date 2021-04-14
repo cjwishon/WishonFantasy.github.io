@@ -41,16 +41,12 @@
                         </header>
                         <div class="row gtr-uniform">
                             <div class="col-2 col-12-xsmall">
-                                <input type="radio" id="season-2019" name="season-select" checked>
-                                <label for="season-2019">2019</label>
-                            </div>
-                            <div class="col-2 col-12-xsmall">
-                                <input type="radio" id="season-2020" name="season-select" checked>
+                                <input type="radio" id="season-2020" value=2020 name="season-select" onchange="radioChange()" checked>
                                 <label for="season-2020">2020</label>
                             </div>
                             <div class="col-2 col-12-xsmall">
-                                <input type="radio" id="season-2021" name="season-select">
-                                <label for="season-2021">2021</label>
+                                <input type="radio" id="season-2019" value=2019 name="season-select" onchange="radioChange()">
+                                <label for="season-2019">2019</label>
                             </div>
                         </div>
                     </section>
@@ -62,7 +58,23 @@
                         <header class="major">
                             <h2>Reg. Season Standings</h2>
                         </header>
-                        <h3>ASDF</h3>
+                        <div class="table-wrapper">
+                            <table class="alt sortable center">
+                                <thead>
+                                    <tr>
+                                        <th>Rank</th>
+                                        <th>Team</th>
+                                        <th>Owner</th>
+                                        <th>Wins</th>
+                                        <th>Points For</th>
+                                        <th>Points Against</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="seasonStandingTable">
+                                    
+                                </tbody>
+                            </table>
+                        </div>
                     </section>
 
                     <!-- 2021 Section -->
@@ -150,6 +162,9 @@
             </div>
 
         </div>
+        
+        <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-database.js"></script>
 
 		<!-- Scripts -->
         <script src="../assets/js/jquery.min.js"></script>
@@ -157,6 +172,8 @@
         <script src="../assets/js/breakpoints.min.js"></script>
         <script src="../assets/js/util.js"></script>
         <script src="../assets/js/main.js"></script>
+        <script src="../assets/js/seasonStats.js"></script>
+        <script type = "text/javascript">loadSeasonStats()</script>
 
 	</body>
 </html>
