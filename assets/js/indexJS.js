@@ -19,7 +19,29 @@ function loadIndex() {
         tableData = snapshot.val();
         tableData.forEach(function(year, index, array) {
             var tableBody = document.getElementById(String(year.year).concat("TableBody"));
+            while(tableBody != null && tableBody.hasChildNodes()) {
+                tableBody.removeChild(tableBody.firstChild);
+            }
+
+
+            var sortArray = []
             year.standings.forEach(function(team,index2,array) {
+                sortArray.push({
+                    "rank":team.rank, 
+                    "team":team.team, 
+                    "owner":team.owner, 
+                    "wins":team.wins, 
+                    "pointFor":team.pointFor, 
+                    "pointsAgainst":team.pointsAgainst, 
+                })
+            })
+            sortArray.sort(function(a,b) {
+                return a.rank - b.rank
+            });
+
+
+
+            sortArray.forEach(function(team,index2,array) {
                 var tr = tableBody.insertRow(-1);  
                 var tabCell = tr.insertCell(-1);
                 tabCell.innerHTML = team.rank;

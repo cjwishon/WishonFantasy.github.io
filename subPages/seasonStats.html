@@ -71,7 +71,14 @@
                                     </tr>
                                 </thead>
                                 <tbody id="seasonStandingTable">
-                                    
+                                    <tr>
+                                        <th>1</th>
+                                        <th>XX</th>
+                                        <th>XX</th>
+                                        <th>1</th>
+                                        <th>1</th>
+                                        <th>1</th>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -82,7 +89,40 @@
                         <header class="major">
                             <h2>Ranking Trendlines</h2>
                         </header>
-                        <h3>ASDF</h3>
+                        <div class="row">
+                            <div class="col-8 col-12-medium">
+                                <canvas id="positionalTrendsChart" width="700" height="350"></canvas>
+                            </div>
+                            <div class="col-4 col-12-medium">
+                                <h4 id="positionalTrendsTableHeader">Schedule (click line point)</h4>
+                                <font size="2">
+                                <div class="table-wrapper">
+                                    <table class="alt center">
+                                        <thead>
+                                            <tr>
+                                                <th>Week</th>
+                                                <th>Opp.</th>
+                                                <th>Score</th>
+                                                <th>Opp. Score</th>
+                                                <th>Result</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="positionalTrendsTable">
+                                            <tr>
+                                                <th>1</th>
+                                                <th>XX</th>
+                                                <th>1</th>
+                                                <th>1</th>
+                                                <th>XX</th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                </font>
+                            </div>
+                        </div>
+
+                        
                     </section>
 
                     <!-- 2021 Section -->
@@ -90,7 +130,56 @@
                         <header class="major">
                             <h2>Power Rankings</h2>
                         </header>
-                        <h3>ASDF</h3>
+                        <div class="row">
+                            <div class="col-8 col-12-medium">
+                                <canvas id="powerRankingsChart" width="700" height="350"></canvas>
+                            </div>
+                            <div class="col-4 col-12-medium">
+                                <h4 id="powerRankingsTableHeader">Week XX Score Contributions</h4>
+                                <font size="2">
+                                <div class="table-wrapper">
+                                    <table class="alt sortable center">
+                                        <thead>
+                                            <tr>
+                                                <th>Rank</th>
+                                                <th>Owner</th>
+                                                <th>Wins</th>
+                                                <th>Exp. Wins</th>
+                                                <th>Points</th>
+                                                <th>Playoff</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="powerRankingsTable">
+                                            <tr>
+                                                <th>1</th>
+                                                <th>XXX</th>
+                                                <th>1</th>
+                                                <th>1</th>
+                                                <th>1</th>
+                                                <th>1</th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                </font>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 2021 Section -->
+                    <section id="playoffOdds">
+                        <header class="major">
+                            <h2>Playoff Odds</h2>
+                        </header>
+                        <div class="table-wrapper">
+                            <table class="alt sortable center">
+                                <thead id="playoffOddsTableHead">
+                                </thead>
+                                <tbody id="playoffOddsTableBody">
+                                </tbody>
+                            </table>
+                        </div>
+                        <canvas id="playoffOddsChart" width="700" height="350"></canvas>
                     </section>
 
                     <!-- 2021 Section -->
@@ -98,7 +187,29 @@
                         <header class="major">
                             <h2>Expected Wins</h2>
                         </header>
-                        <h3>ASDF</h3>
+                        <h3>How many wins you're expected based on playing everyone's schedule</h3>
+                        <div class="table-wrapper">
+                            <table class="alt sortable center">
+                                <thead>
+                                    <tr>
+                                        <th>Owner</th>
+                                        <th>Rank</th>
+                                        <th>Expected Wins</th>
+                                        <th>Actual Wins</th>
+                                        <th>Difference</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="expectedWinsTable">
+                                    <tr>
+                                        <th>XX</th>
+                                        <th>1</th>
+                                        <th>1</th>
+                                        <th>1</th>
+                                        <th>1</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </section>
 
                     <!-- 2021 Section -->
@@ -106,7 +217,29 @@
                         <header class="major">
                             <h2>Schedule Difficulty</h2>
                         </header>
-                        <h3>ASDF</h3>
+                        <h3>How many wins everyone else would have had with your schedule</h3>
+                        <div class="table-wrapper">
+                            <table class="alt sortable center">
+                                <thead>
+                                    <tr>
+                                        <th>Owner</th>
+                                        <th>Rank</th>
+                                        <th>Opponent Wins</th>
+                                        <th>Actual Wins</th>
+                                        <th>Difference</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="scheduleDifficultyTable">
+                                    <tr>
+                                        <th>XX</th>
+                                        <th>1</th>
+                                        <th>1</th>
+                                        <th>1</th>
+                                        <th>1</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </section>
 
                     <!-- 2021 Section -->
@@ -114,7 +247,61 @@
                         <header class="major">
                             <h2>Points Per Position</h2>
                         </header>
-                        <h3>ASDF</h3>
+                        <div class="table-wrapper">
+                            <table class="alt sortable center">
+                                <thead>
+                                    <tr>
+                                        <th>Owner</th>
+                                        <th>Rank</th>
+                                        <th>Total Points</th>
+                                        <th>QB Points</th>
+                                        <th>RB Points</th>
+                                        <th>WR Points</th>
+                                        <th>TE Points</th>
+                                        <th>OP Points</th>
+                                        <th>FLEX Points</th>
+                                        <th>K Points</th>
+                                        <th>DST Points</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="pointsPerPositionTable">
+                                    <tr>
+                                        <th>XX</th>
+                                        <th>1</th>
+                                        <th>1</th>
+                                        <th>1</th>
+                                        <th>1</th>
+                                        <th>1</th>
+                                        <th>1</th>
+                                        <th>1</th>
+                                        <th>1</th>
+                                        <th>1</th>
+                                        <th>1</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- 2021 Section -->
+                    <section id="matchupCharts">
+                        <header class="major">
+                            <h2>Matchup Charts</h2>
+                        </header>
+                        <div class="row">
+                            <div class="col-4 col-12-medium">
+                                <select name="team-matchupCharts" id="team-matchupCharts" onchange="loadMatchupChart()">
+                                    <option value="">- Category -</option>
+                                </select>
+                                <p>
+                                    Green region are lucky wins (player win with underperforming team).</br>
+                                    Red region are unlucky losses (player loss with overperforming team).
+                                </p>
+                            </div>
+                            <div class="col-4 col-12-medium">
+                                <canvas id="matchupChartCanvas" width=100% height=100%></canvas>
+                            </div>
+                        </div>
                     </section>
 
                 </div>
@@ -134,12 +321,14 @@
                             <li>
                                 <span class="opener">Season Data</span>
                                 <ul>
-                                    <li><a href="#">Standings(2)</a></li>
-                                    <li><a href="#positionalTrends">Positional Trends(7)</a></li>
+                                    <li><a href="#">Standings</a></li>
+                                    <li><a href="#positionalTrends">Positional Trends</a></li>
                                     <li><a href="#powerRankings">Power Rankings</a></li>
-                                    <li><a href="#expectedWins">Expected Wins(8)</a></li>
-                                    <li><a href="#scheduleDifficulty">Schedule Difficulty(9)</a></li>
-                                    <li><a href="#pointPerPosition">Points Per Position(10)</a></li>
+                                    <li><a href="#playoffOdds">Playoff Odds</a></li>
+                                    <li><a href="#expectedWins">Expected Wins</a></li>
+                                    <li><a href="#scheduleDifficulty">Schedule Difficulty</a></li>
+                                    <li><a href="#pointPerPosition">Points Per Position</a></li>
+                                    <li><a href="#matchupCharts">Matchup Charts</a></li>
                                 </ul>
                             </li>
                             <li>
@@ -173,6 +362,7 @@
         <script src="../assets/js/util.js"></script>
         <script src="../assets/js/main.js"></script>
         <script src="../assets/js/seasonStats.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
         <script type = "text/javascript">loadSeasonStats()</script>
 
 	</body>
