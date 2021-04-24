@@ -12,6 +12,24 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../assets/css/main.css" />
         <script src="../assets/js/sorttable.js"></script>
+        <style>
+            .tableSection thead {
+                display: table;
+                width: calc(100% - 16px); /* assuming scrollbar width as 16px */
+            }
+            .tableSection tbody {
+                overflow: auto;
+                height: 400px;
+                display: block;
+                
+            }
+            .tableSection tr {
+                width: 100%;
+                display: table;
+                table-layout: fixed;
+            }
+
+        </style>
 	</head>
 	<body class="is-preload">
 
@@ -24,7 +42,7 @@
 
                     <!-- Header -->
                     <header id="header">
-                        <a href="index.html" class="logo"><strong>To Be Destructed</strong> Fantasy Football League</a>
+                        <a href="../index.html" class="logo"><strong>To Be Destructed</strong> Fantasy Football League</a>
                         <ul class="icons">
                             <li><a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
                             <li><a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
@@ -34,7 +52,7 @@
                         </ul>
                     </header>
 
-                    <!-- 2021 Section -->
+                    <!-- Year/Season Radio Buttons -->
                     <section id="yearSelect">
                         <header class="major">
                             <h2>Season</h2>
@@ -50,10 +68,8 @@
                             </div>
                         </div>
                     </section>
-                    
-                    
 
-                    <!-- 2021 Section -->
+                    <!-- Overall Standings Table -->
                     <section id="standings">
                         <header class="major">
                             <h2>Reg. Season Standings</h2>
@@ -84,7 +100,7 @@
                         </div>
                     </section>
 
-                    <!-- 2021 Section -->
+                    <!-- Rank by Week Chart and Results Table -->
                     <section id="positionalTrends">
                         <header class="major">
                             <h2>Ranking Trendlines</h2>
@@ -125,7 +141,7 @@
                         
                     </section>
 
-                    <!-- 2021 Section -->
+                    <!-- Power ranking chart and Power Ranking Contribution Table -->
                     <section id="powerRankings">
                         <header class="major">
                             <h2>Power Rankings</h2>
@@ -166,7 +182,7 @@
                         </div>
                     </section>
 
-                    <!-- 2021 Section -->
+                    <!-- Playoff Odds Table and Trend by Week Chart -->
                     <section id="playoffOdds">
                         <header class="major">
                             <h2>Playoff Odds</h2>
@@ -180,9 +196,112 @@
                             </table>
                         </div>
                         <canvas id="playoffOddsChart" width="700" height="350"></canvas>
+
+
+
+                        
+
+
                     </section>
 
-                    <!-- 2021 Section -->
+                    <!-- Team Scores and Matchup Results Tables -->
+                    <section id="topScoresAndMatchups">
+                        <header class="major">
+                            <h2>Top Scores and Closest Matchups</h2>
+                        </header>
+                        <div class="row">
+                            <div class="col-5 col-12-large">
+                                <div class="table-wrapper">
+                                    <font size="2">
+                                    <table class="tableSection alt sortable center">
+                                        <thead id="topScoresTableHead">
+                                            <th width=20%>Rank</th>
+                                            <th width=30%>Owner</th>
+                                            <th width=30%>Score</th>
+                                            <th width=20%>Week</th>
+                                        </thead>
+                                        <tbody id="topScoresTableBody">
+                                            <tr>
+                                                <td>1</td>
+                                                <td>XXX</td>
+                                                <td>100</td>
+                                                <td>5</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    </font>
+                                </div>
+                            </div>
+                            <div class="col-7 col-12-large">
+                                <div class="table-wrapper">
+                                    <font size="2">
+                                    <table class="tableSection alt sortable center">
+                                        <thead id="closestMatchupsTableHead">
+                                            <th width=8%>Rank</th>
+                                            <th width=22%>Winner</th>
+                                            <th width=22%>Loser</th>
+                                            <th width=30%>Score</th>
+                                            <th width=9%>Diff</th>
+                                            <th width=9%>Week</th>
+                                        </thead>
+                                        <tbody id="closestMatchupsTableBody">
+                                            <tr>
+                                                <td>1</td>
+                                                <td>XXX</td>
+                                                <td>XXX</td>
+                                                <td>5 vs. 4</td>
+                                                <td>1</td>
+                                                <td>1</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    </font>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Top 100 Weeks by Position Table (and pulldown selector) -->
+                    <section id="positionPerformances">
+                        <header class="major">
+                            <h2>Best Positional Performances</h2>
+                        </header>
+                        <div class="row">
+                            <div class="col-4 col-12-medium">
+                                <select name="positions" id="positions" onchange="loadPositionalPerformances()">
+                                    <option value="">- Category -</option>
+                                </select>
+                            </div>
+                            <div class="col-8 col-12-medium">
+                                <div class="table-wrapper">
+                                    <font size="2">
+                                    <table class="tableSection alt sortable center">
+                                        <thead>
+                                            <th width=8%>Rank</th>
+                                            <th width=36%>Player</th>
+                                            <th width=12%>Points</th>
+                                            <th width=25%>Owner</th>
+                                            <th width=11%>Status</th>
+                                            <th width=8%>Week</th>
+                                        </thead>
+                                        <tbody id="positionalPerformancesTable">
+                                            <tr>
+                                                <td>1</td>
+                                                <td>XXX</td>
+                                                <td>100</td>
+                                                <td>XXX</td>
+                                                <td>XXX</td>
+                                                <td>1</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    </font>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Expected Wins Table -->
                     <section id="expectedWins">
                         <header class="major">
                             <h2>Expected Wins</h2>
@@ -212,7 +331,7 @@
                         </div>
                     </section>
 
-                    <!-- 2021 Section -->
+                    <!-- Schedule Difficulty Table -->
                     <section id="scheduleDifficulty">
                         <header class="major">
                             <h2>Schedule Difficulty</h2>
@@ -242,7 +361,7 @@
                         </div>
                     </section>
 
-                    <!-- 2021 Section -->
+                    <!-- Points By Position Table (w/ Conditional Formatting) -->
                     <section id="pointPerPosition">
                         <header class="major">
                             <h2>Points Per Position</h2>
@@ -283,7 +402,7 @@
                         </div>
                     </section>
 
-                    <!-- 2021 Section -->
+                    <!-- Matchup Scatter Plot (with pulldown selector) -->
                     <section id="matchupCharts">
                         <header class="major">
                             <h2>Matchup Charts</h2>
@@ -318,28 +437,9 @@
                         </header>
                         <ul>
                             <li><a href="../index.html">Homepage</a></li>
-                            <li>
-                                <span class="opener">Season Data</span>
-                                <ul>
-                                    <li><a href="#">Standings</a></li>
-                                    <li><a href="#positionalTrends">Positional Trends</a></li>
-                                    <li><a href="#powerRankings">Power Rankings</a></li>
-                                    <li><a href="#playoffOdds">Playoff Odds</a></li>
-                                    <li><a href="#expectedWins">Expected Wins</a></li>
-                                    <li><a href="#scheduleDifficulty">Schedule Difficulty</a></li>
-                                    <li><a href="#pointPerPosition">Points Per Position</a></li>
-                                    <li><a href="#matchupCharts">Matchup Charts</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <span class="opener">Weekly Results</span>
-                                <ul>
-                                    <li><a href="#">Summary(1) w/ point breakdown</a></li>
-                                    <li><a href="#">Best Ball(3)</a></li>
-                                    <li><a href="#">Top NFL Players(4)</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Matchup Timelines</a></li>
+                            <li><a href="#">Season Data</a></li>
+                            <li><a href="#">Weekly Results</a></li>
+                            <li><a href="#">Playoff Results</a></li>
                             <li><a href="#">Fantasy Draft</a></li>
                             <li><a href="#">NFL Team Data</a></li>
                             <li><a href="#">NFL Player Data</a></li>
@@ -352,6 +452,7 @@
 
         </div>
         
+        <!-- Firebase Scripts -->
         <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-database.js"></script>
 

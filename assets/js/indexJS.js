@@ -1,3 +1,4 @@
+// Firebase initialization
 var config = {
     apiKey: "AIzaSyC8f6X3dPhyU-zgvzMWlMh-WImPZsJMMh8",
     authDomain: "fantasyfootball-7496f.firebaseapp.com",
@@ -12,18 +13,23 @@ firebase.initializeApp(config);
 var database = firebase.database();
 const dbRef = firebase.database().ref();
 
-
+// Function which fills in season stat tables
 function loadIndex() {
 
+    // Get data from firebase
     dbRef.child("seasonFantasyTeamData").get().then((snapshot) => {
         tableData = snapshot.val();
+
+        // For each year, load in the data in a tablae
         tableData.forEach(function(year, index, array) {
+
+            // Get correct table and remove all prior entries
             var tableBody = document.getElementById(String(year.year).concat("TableBody"));
             while(tableBody != null && tableBody.hasChildNodes()) {
                 tableBody.removeChild(tableBody.firstChild);
             }
 
-
+            // Load data into array and sort
             var sortArray = []
             year.standings.forEach(function(team,index2,array) {
                 sortArray.push({
@@ -40,7 +46,7 @@ function loadIndex() {
             });
 
 
-
+            // Load into table
             sortArray.forEach(function(team,index2,array) {
                 var tr = tableBody.insertRow(-1);  
                 var tabCell = tr.insertCell(-1);

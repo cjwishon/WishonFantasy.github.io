@@ -1,3 +1,4 @@
+// Firebase initialization
 var config = {
     apiKey: "AIzaSyC8f6X3dPhyU-zgvzMWlMh-WImPZsJMMh8",
     authDomain: "fantasyfootball-7496f.firebaseapp.com",
@@ -12,11 +13,15 @@ firebase.initializeApp(config);
 var database = firebase.database();
 const dbRef = firebase.database().ref();
 
+// Global variables
 var seasonData;
 var seasonDataYear;
 var pageYear;
 var median;
+var numberTeams;
+var numberWeeks;
 
+// Color schemes
 var colorScheme = [];
 var color8 = [];
 var color10 = ['#f9ca24','#f0932b','#eb4d4b','#6ab04c','#c7ecee','#22a6b3','#be2edd','#4834d4','#130f40','#535c68'];
@@ -24,13 +29,17 @@ var color12 = [];
 var color14 = [];
 var color16 = [];
 
-var numberTeams;
-
+// Chart variables
 var rankingTrendChart;
 var powerRankingTrendChart;
 var playoffOddsChart;
 var matchupChart;
 
+/* FUNCTION: loadSeasonStats
+*
+* Initialization function on page load
+*
+*/
 function loadSeasonStats() {
 
     var radios = document.getElementsByName('season-select');
@@ -50,9 +59,20 @@ function loadSeasonStats() {
     });
 }
 
+
+/* FUNCTION: updatePage
+*
+* Updates all of the charts/tables/forms on the page.
+* Called whenever the year/season radio button is updated (and on page load).
+*
+*/
 function updatePage() {
 
-    // Get data just for the year of interest
+    ////////////////////////////////////////////////////////
+    // INITIALIZE SOME VARIABLES
+    ////////////////////////////////////////////////////////
+    
+    // Load data into storage for the selected year
     for(var i = 0; i < seasonData.length; i++) {
         if(seasonData[i].year == pageYear) {
             seasonDataYear = seasonData[i];
@@ -62,6 +82,14 @@ function updatePage() {
 
     // Determine number of teams
     numberTeams = seasonDataYear.standings.length;
+
+    // Determine number of active weeks
+    numberWeeks = 0;
+    for(var i = 0; i < seasonDataYear.standings[0].scores.length; i++){
+        if(seasonDataYear.standings[0].scores[i] > 0.000000001) {
+            numberWeeks++;
+        }
+    }
 
     // Set color scheme
     if(numberTeams == 8) {
@@ -83,6 +111,9 @@ function updatePage() {
 
     
 
+    ////////////////////////////////////////////////////////
+    // SEASON SUMMARY TABLE
+    ////////////////////////////////////////////////////////
 
     var tableBody = document.getElementById("seasonStandingTable");
     while(tableBody.hasChildNodes()) {
@@ -122,7 +153,9 @@ function updatePage() {
 
 
 
-
+    ////////////////////////////////////////////////////////
+    // RANK BY WEEK CHART AND SCHEDULE TABLE
+    ////////////////////////////////////////////////////////
 
     var graph = document.getElementById("positionalTrendsChart");
     var xAxis = [];
@@ -202,10 +235,9 @@ function updatePage() {
 
 
 
-
-
-
-
+    ////////////////////////////////////////////////////////
+    // POWER RANKING TABLE AND CONTRIBUTIONS TABLE
+    ////////////////////////////////////////////////////////
 
     // START OF POWER RANKING PORTION!!!!
     graph = document.getElementById("powerRankingsChart");
@@ -315,10 +347,9 @@ function updatePage() {
 
 
 
-
-
-
-
+    ////////////////////////////////////////////////////////
+    // PLAYOFF ODDS TABLE AND CHART
+    ////////////////////////////////////////////////////////
 
     // Start of playoff odds section
     graph = document.getElementById("playoffOddsChart");
@@ -459,10 +490,132 @@ function updatePage() {
 
 
 
+    ////////////////////////////////////////////////////////
+    // TOP SCORES AND CLOSEST MATCHUP TABLES
+    ////////////////////////////////////////////////////////
+
+    // Top scores and closest matchups
+    topScoresArray = []
+    closestMatchupArray = []
+    for(var i = 0; i < seasonDataYear.games.length; i++) {
+        topScoresArray.push({
+            "owner":seasonDataYear.games[i].awayTeam, 
+            "score":seasonDataYear.games[i].awayPoints,
+            "week":seasonDataYear.games[i].week
+        })
+        topScoresArray.push({
+            "owner":seasonDataYear.games[i].homeTeam, 
+            "score":seasonDataYear.games[i].homePoints,
+            "week":seasonDataYear.games[i].week
+        })
+        if(seasonDataYear.games[i].awayPoints > seasonDataYear.games[i].homePoints) {
+            closestMatchupArray.push({
+                "winner":seasonDataYear.games[i].awayTeam, 
+                "loser":seasonDataYear.games[i].homeTeam,
+                "score":seasonDataYear.games[i].awayPoints.toString() + " vs. " + seasonDataYear.games[i].homePoints.toString(),
+                "diff":Math.round((seasonDataYear.games[i].awayPoints - seasonDataYear.games[i].homePoints)*100)/100,
+                "week":seasonDataYear.games[i].week
+            })
+        } else {
+            closestMatchupArray.push({
+                "winner":seasonDataYear.games[i].homeTeam, 
+                "loser":seasonDataYear.games[i].awayTeam,
+                "score":seasonDataYear.games[i].homePoints.toString() + " vs. " + seasonDataYear.games[i].awayPoints.toString(),
+                "diff":Math.round((seasonDataYear.games[i].homePoints - seasonDataYear.games[i].awayPoints)*100)/100,
+                "week":seasonDataYear.games[i].week
+            })
+        }
+    }
+    closestMatchupArray.sort(function(a,b) {
+        return a.diff - b.diff
+    });
+    topScoresArray.sort(function(a,b) {
+        return b.score - a.score
+    });
+
+    tableBody = document.getElementById("topScoresTableBody");
+    while(tableBody != null && tableBody.hasChildNodes()) {
+        tableBody.removeChild(tableBody.firstChild);
+    }
+
+    for(var i = 0; i < topScoresArray.length; i++) {
+        tr = tableBody.insertRow(-1);  
+        tabCell = tr.insertCell(-1);
+        tabCell.innerText = i+1;
+        tabCell.style.paddingTop = "0.25em";
+        tabCell.style.paddingBottom = "0.25em";
+        tabCell.style.width = "20%";
+        if(topScoresArray[i].week == numberWeeks) tabCell.style.backgroundColor = "#ffd500";
+        tabCell = tr.insertCell(-1);
+        tabCell.innerText = topScoresArray[i].owner;
+        tabCell.style.paddingTop = "0.25em";
+        tabCell.style.paddingBottom = "0.25em";
+        tabCell.style.width = "30%";
+        if(topScoresArray[i].week == numberWeeks) tabCell.style.backgroundColor = "#ffd500";
+        tabCell = tr.insertCell(-1);
+        tabCell.innerText = topScoresArray[i].score;
+        tabCell.style.paddingTop = "0.25em";
+        tabCell.style.paddingBottom = "0.25em";
+        tabCell.style.width = "30%";
+        if(topScoresArray[i].week == numberWeeks) tabCell.style.backgroundColor = "#ffd500";
+        tabCell = tr.insertCell(-1);
+        tabCell.innerText = topScoresArray[i].week;
+        tabCell.style.paddingTop = "0.25em";
+        tabCell.style.paddingBottom = "0.25em";
+        tabCell.style.width = "20%";
+        if(topScoresArray[i].week == numberWeeks) tabCell.style.backgroundColor = "#ffd500";
+    }
+
+    tableBody = document.getElementById("closestMatchupsTableBody");
+    while(tableBody != null && tableBody.hasChildNodes()) {
+        tableBody.removeChild(tableBody.firstChild);
+    }
+
+    for(var i = 0; i < closestMatchupArray.length; i++) {
+        tr = tableBody.insertRow(-1);  
+        tabCell = tr.insertCell(-1);
+        tabCell.innerText = i+1;
+        tabCell.style.paddingTop = "0.25em";
+        tabCell.style.paddingBottom = "0.25em";
+        tabCell.style.width = "8%";
+        if(closestMatchupArray[i].week == numberWeeks) tabCell.style.backgroundColor = "#ffd500";
+        tabCell = tr.insertCell(-1);
+        tabCell.innerText = closestMatchupArray[i].winner;
+        tabCell.style.paddingTop = "0.25em";
+        tabCell.style.paddingBottom = "0.25em";
+        tabCell.style.width = "22%";
+        if(closestMatchupArray[i].week == numberWeeks) tabCell.style.backgroundColor = "#ffd500";
+        tabCell = tr.insertCell(-1);
+        tabCell.innerText = closestMatchupArray[i].loser;
+        tabCell.style.paddingTop = "0.25em";
+        tabCell.style.paddingBottom = "0.25em";
+        tabCell.style.width = "22%";
+        if(closestMatchupArray[i].week == numberWeeks) tabCell.style.backgroundColor = "#ffd500";
+        tabCell = tr.insertCell(-1);
+        tabCell.innerText = closestMatchupArray[i].score;
+        tabCell.style.paddingTop = "0.25em";
+        tabCell.style.paddingBottom = "0.25em";
+        tabCell.style.width = "30%";
+        if(closestMatchupArray[i].week == numberWeeks) tabCell.style.backgroundColor = "#ffd500";
+        tabCell = tr.insertCell(-1);
+        tabCell.innerText = closestMatchupArray[i].diff;
+        tabCell.style.paddingTop = "0.25em";
+        tabCell.style.paddingBottom = "0.25em";
+        tabCell.style.width = "9%";
+        if(closestMatchupArray[i].week == numberWeeks) tabCell.style.backgroundColor = "#ffd500";
+        tabCell = tr.insertCell(-1);
+        tabCell.innerText = closestMatchupArray[i].week;
+        tabCell.style.paddingTop = "0.25em";
+        tabCell.style.paddingBottom = "0.25em";
+        tabCell.style.width = "9%";
+        if(closestMatchupArray[i].week == numberWeeks) tabCell.style.backgroundColor = "#ffd500";
+    }
 
 
 
-
+    ////////////////////////////////////////////////////////
+    // EXPECTED WINS TABLE
+    ////////////////////////////////////////////////////////
 
     // Expected wins table
 
@@ -501,10 +654,9 @@ function updatePage() {
 
 
 
-
-
-
-
+    ////////////////////////////////////////////////////////
+    // SCHEDULE DIFFICULTY TABLE
+    ////////////////////////////////////////////////////////
 
     // Schedule difficulty table
 
@@ -543,10 +695,9 @@ function updatePage() {
 
 
 
-
-
-
-
+    ////////////////////////////////////////////////////////
+    // POINTS BY POSITION TABLE
+    ////////////////////////////////////////////////////////
 
     // Points by position table
 
@@ -898,12 +1049,9 @@ function updatePage() {
 
 
 
-
-
-
-
-
-
+    ////////////////////////////////////////////////////////
+    // MATCHUP SCATTER PLOT
+    ////////////////////////////////////////////////////////
 
     // Matchup table charts
     var selectObj = document.getElementById("team-matchupCharts");
@@ -945,11 +1093,70 @@ function updatePage() {
     
 
 
+    ////////////////////////////////////////////////////////
+    // TOP SCORES/WEEK BY POSITION TABLE AND DRAWDOWN
+    ////////////////////////////////////////////////////////
+
+    // Positional Performances Table and Pulldown
+    selectObj = document.getElementById("positions");
+    while(selectObj.hasChildNodes()) {
+        selectObj.removeChild(selectObj.firstChild);
+    }
+
+    if("QB" in seasonDataYear.positionalPerformances) {
+        var opt = document.createElement('option');
+        opt.value = 0;
+        opt.innerHTML = "Quarterback";
+        selectObj.appendChild(opt);
+    }
+    if("RB" in seasonDataYear.positionalPerformances) {
+        var opt = document.createElement('option');
+        opt.value = 1;
+        opt.innerHTML = "Running Back";
+        selectObj.appendChild(opt);
+    }
+    if("WR" in seasonDataYear.positionalPerformances) {
+        var opt = document.createElement('option');
+        opt.value = 2;
+        opt.innerHTML = "Wide Receiver";
+        selectObj.appendChild(opt);
+    }
+    if("TE" in seasonDataYear.positionalPerformances) {
+        var opt = document.createElement('option');
+        opt.value = 3;
+        opt.innerHTML = "Tight End";
+        selectObj.appendChild(opt);
+    }
+    if("K" in seasonDataYear.positionalPerformances) {
+        var opt = document.createElement('option');
+        opt.value = 4;
+        opt.innerHTML = "Kicker";
+        selectObj.appendChild(opt);
+    }
+    if("DST" in seasonDataYear.positionalPerformances) {
+        var opt = document.createElement('option');
+        opt.value = 5;
+        opt.innerHTML = "Defense/Special Tems";
+        selectObj.appendChild(opt);
+    }
+    selectObj.selectedIndex = 0;
+    loadPositionalPerformances()
+
 }
 
+
+/* FUNCTION: radioChange
+*
+* Called whenver the season/year radio button is updated.
+* Calls 'updatePage' at end to update all page items as appropriate
+*
+*/
 function radioChange() {
+
+    // Get radio buttons
     var radios = document.getElementsByName('season-select');
 
+    // Determine the value selected and update the 'pageYear' variable and then update page
     for (var i = 0, length = radios.length; i < length; i++) {
         if (radios[i].checked) {
             pageYear = radios[i].value;
@@ -959,15 +1166,26 @@ function radioChange() {
     }
 }
 
+
+/* FUNCTION: loadScheduleTable
+*
+* Updates the table next to the ranking by week chart based on what team is selected in the chart.
+* Requires the team index (ID) to correctly operate.
+*
+*/
 function loadScheduleTable(ID) {
+
+    // Get the table and clear all rows
     var tableBody = document.getElementById("positionalTrendsTable");
     while(tableBody != null && tableBody.hasChildNodes()) {
         tableBody.removeChild(tableBody.firstChild);
     }
 
+    // Update the header to show whose schedule it is
     var header = document.getElementById("positionalTrendsTableHeader");
     header.innerText = seasonDataYear.standings[ID].owner.concat(" Schedule  (click line point)");
 
+    // Update the table rows
     for(var i = 0; i < seasonDataYear.standings[ID].scores.length; i++) {
         var score = seasonDataYear.standings[ID].scores[i];
         var oppScore = seasonDataYear.standings[ID].oppScores[i];
@@ -989,8 +1207,6 @@ function loadScheduleTable(ID) {
         tabCell.innerHTML = oppScore;
         tabCell.style.paddingTop = "0.25em";
         tabCell.style.paddingBottom = "0.25em";
-        /*tabCell = tr.insertCell(-1);
-        tabCell.innerHTML = score.toString().concat(" vs. ").concat(oppScore.toString());*/
         tabCell = tr.insertCell(-1);
         if (score + oppScore < 0.000000001) {
             tabCells.innerHTML = "";  
@@ -1001,14 +1217,23 @@ function loadScheduleTable(ID) {
         }
         tabCell.style.paddingTop = "0.25em";
         tabCell.style.paddingBottom = "0.25em";
-        
     }
 }
 
+
+/* FUNCTION: loadMatchupChart
+*
+* Load the matchup scatter plot based on the selected team.
+* On load, defaults to the highest ranked team.
+*
+*/
 function loadMatchupChart() {
+
+    // Gets the value from the team pull down
     var e = document.getElementById("team-matchupCharts");
     var user = e.value;
 
+    // Create scatter plot data
     var lossData = [];
     var winData = [];
     for(var j = 0; j < seasonDataYear.standings[user].scores.length; j++){
@@ -1019,11 +1244,15 @@ function loadMatchupChart() {
         }
     }
 
+    // Get chart element
     graph = document.getElementById("matchupChartCanvas");
     
+    // Clear all data/destroy if needed (not first load)
     if (typeof matchupChart !== 'undefined'){
         matchupChart.destroy();
     }
+
+    // Create graph
     matchupChart = new Chart(graph, {
         type: 'scatter',
         data: {
@@ -1127,4 +1356,81 @@ function loadMatchupChart() {
             }
         }
     })
+}
+
+
+/* FUNCTION: loadPositionalPerformances
+*
+* Loads the position for weekly top scores for a position table.
+* Called whenever the drawdown menu changes.
+*
+*/
+function loadPositionalPerformances() {
+
+    // Gets position value from the pulldown
+    var e = document.getElementById("positions");
+    var position = e.value;
+
+    // Loads data based on the position selected
+    var positionData = [];
+    if(position == 0){
+        positionData = seasonDataYear.positionalPerformances['QB'];
+    }else if (position == 1) {
+        positionData = seasonDataYear.positionalPerformances['RB'];
+    }else if (position == 2) {
+        positionData = seasonDataYear.positionalPerformances['WR'];
+    }else if (position == 3) {
+        positionData = seasonDataYear.positionalPerformances['TE'];
+    }else if (position == 4) {
+        positionData = seasonDataYear.positionalPerformances['K'];
+    }else if (position == 5) {
+        positionData = seasonDataYear.positionalPerformances['DST'];
+    }
+
+    // Gets table element and clears rows
+    var tableBody = document.getElementById("positionalPerformancesTable");
+    while(tableBody.hasChildNodes()) {
+        tableBody.removeChild(tableBody.firstChild);
+    }
+
+    // Loads rows into table
+    for(var i = 0; i < positionData.length; i++) {
+        tr = tableBody.insertRow(-1);  
+        tabCell = tr.insertCell(-1);
+        tabCell.innerHTML = i+1;
+        tabCell.style.paddingTop = "0.25em";
+        tabCell.style.paddingBottom = "0.25em";
+        tabCell.style.width = "8%";
+        if(positionData[i].week == numberWeeks) tabCell.style.backgroundColor = "#ffd500";
+        tabCell = tr.insertCell(-1);
+        tabCell.innerHTML = positionData[i].name;
+        tabCell.style.paddingTop = "0.25em";
+        tabCell.style.paddingBottom = "0.25em";
+        tabCell.style.width = "36%";
+        if(positionData[i].week == numberWeeks) tabCell.style.backgroundColor = "#ffd500";
+        tabCell = tr.insertCell(-1);
+        tabCell.innerHTML = positionData[i].score;
+        tabCell.style.paddingTop = "0.25em";
+        tabCell.style.paddingBottom = "0.25em";
+        tabCell.style.width = "12%";
+        if(positionData[i].week == numberWeeks) tabCell.style.backgroundColor = "#ffd500";
+        tabCell = tr.insertCell(-1);
+        tabCell.innerHTML = positionData[i].owner;
+        tabCell.style.paddingTop = "0.25em";
+        tabCell.style.paddingBottom = "0.25em";
+        tabCell.style.width = "25%";
+        if(positionData[i].week == numberWeeks) tabCell.style.backgroundColor = "#ffd500";
+        tabCell = tr.insertCell(-1);
+        tabCell.innerHTML = positionData[i].status;
+        tabCell.style.paddingTop = "0.25em";
+        tabCell.style.paddingBottom = "0.25em";
+        tabCell.style.width = "11%";
+        if(positionData[i].week == numberWeeks) tabCell.style.backgroundColor = "#ffd500";
+        tabCell = tr.insertCell(-1);
+        tabCell.innerHTML = positionData[i].week;
+        tabCell.style.paddingTop = "0.25em";
+        tabCell.style.paddingBottom = "0.25em";
+        tabCell.style.width = "8%";
+        if(positionData[i].week == numberWeeks) tabCell.style.backgroundColor = "#ffd500";
+    }
 }
