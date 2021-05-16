@@ -115,11 +115,13 @@ function updatePage() {
     // SEASON SUMMARY TABLE
     ////////////////////////////////////////////////////////
 
+    // Get table element and clear all of the rows
     var tableBody = document.getElementById("seasonStandingTable");
     while(tableBody.hasChildNodes()) {
         tableBody.removeChild(tableBody.firstChild);
     }
 
+    // get all the team data and sort it
     var sortArray = []
     seasonDataYear.standings.forEach(function(team,index2,array) {
         sortArray.push({
@@ -135,6 +137,7 @@ function updatePage() {
         return a.rank - b.rank
     });
 
+    // Load data into table
     sortArray.forEach(function(team,index2,array) {
         tr = tableBody.insertRow(-1);  
         tabCell = tr.insertCell(-1);
@@ -157,7 +160,7 @@ function updatePage() {
     // RANK BY WEEK CHART AND SCHEDULE TABLE
     ////////////////////////////////////////////////////////
 
-    var graph = document.getElementById("positionalTrendsChart");
+    // Get data for plot and load into variables
     var xAxis = [];
     var dataSet = [];
     for(i = 0; i < seasonDataYear.standings[0].rankingTrend.length; i++) {
@@ -174,8 +177,13 @@ function updatePage() {
         })
     })
     
-    if (typeof rankingTrendChart !== 'undefined')
+    // Get chart and clear any data/plot
+    var graph = document.getElementById("positionalTrendsChart");
+    if (typeof rankingTrendChart !== 'undefined') {
         rankingTrendChart.destroy();
+    }
+
+    // Load data into chart
     rankingTrendChart = new Chart(graph, {
         type: 'line',
         data: {
@@ -216,6 +224,7 @@ function updatePage() {
         }
     })
     
+    // Add function that loads a schedule based on selecting a line on the plot
     document.getElementById("positionalTrendsChart").onclick = function(evt) {
         var activePoint = rankingTrendChart.getElementAtEvent(evt);
       
@@ -225,7 +234,7 @@ function updatePage() {
         }
     };
 
-    // Load rank 1 schedule
+    // Load the first place schedule
     for(i = 0; i < seasonDataYear.standings.length; i++) {
         if(seasonDataYear.standings[i].rank == 1) {
             loadScheduleTable(i);
@@ -239,8 +248,7 @@ function updatePage() {
     // POWER RANKING TABLE AND CONTRIBUTIONS TABLE
     ////////////////////////////////////////////////////////
 
-    // START OF POWER RANKING PORTION!!!!
-    graph = document.getElementById("powerRankingsChart");
+    // Get chart data and store into variables
     xAxis = [];
     dataSet = [];
     for(i = 0; i < seasonDataYear.standings[0].powerRankingTrends.length; i++) {
@@ -257,8 +265,13 @@ function updatePage() {
         })
     })
     
-    if (typeof powerRankingTrendChart !== 'undefined')
+    // Get chart element and delete and prior plotting if applicable
+    graph = document.getElementById("powerRankingsChart");
+    if (typeof powerRankingTrendChart !== 'undefined') {
         powerRankingTrendChart.destroy();
+    }
+
+    // Load data into chart and format
     powerRankingTrendChart = new Chart(graph, {
         type: 'line',
         data: {
@@ -294,14 +307,17 @@ function updatePage() {
         }
     })
 
+    // Get power ranking contribution table and clear any rows
     tableBody = document.getElementById("powerRankingsTable");
     while(tableBody != null && tableBody.hasChildNodes()) {
         tableBody.removeChild(tableBody.firstChild);
     }
 
+    // Update header to reflect maximum week with data
     var header = document.getElementById("powerRankingsTableHeader");
     header.innerText = "Week " + xAxis[xAxis.length - 1] + " Score Contributions";
 
+    // Load power ranking contribution data and sort
     powerRankingSortArray = []
     for(var i = 0; i < numberTeams; i++) {
         powerRankingSortArray.push({
@@ -317,6 +333,7 @@ function updatePage() {
         return b.rankingOverall - a.rankingOverall
     });
 
+    // Create table rows
     for(var i = 0; i < numberTeams; i++) {
         tr = tableBody.insertRow(-1);  
         tabCell = tr.insertCell(-1);
@@ -351,8 +368,7 @@ function updatePage() {
     // PLAYOFF ODDS TABLE AND CHART
     ////////////////////////////////////////////////////////
 
-    // Start of playoff odds section
-    graph = document.getElementById("playoffOddsChart");
+    // Get playoff odds chart data and store into variables
     xAxis = [];
     dataSet = [];
     for(i = 0; i < seasonDataYear.standings[0].playoffOddTrends.length; i++) {
@@ -369,6 +385,8 @@ function updatePage() {
         })
     })
     
+    // Get graph element, clear it (if applicable), and fill in the data
+    graph = document.getElementById("playoffOddsChart");
     if (typeof playoffOddsChart !== 'undefined'){
         playoffOddsChart.destroy();
     }
@@ -418,12 +436,13 @@ function updatePage() {
         }
     })
 
+    // Get the table HEADER element and empty the data
     tableBody = document.getElementById("playoffOddsTableHead");
     while(tableBody != null && tableBody.hasChildNodes()) {
         tableBody.removeChild(tableBody.firstChild);
     }
 
-
+    // Fill in the table HEADER
     tr = tableBody.insertRow(-1);  
     th = document.createElement("TH");
     th.innerHTML = "Owner";
@@ -440,11 +459,7 @@ function updatePage() {
     th.innerHTML = "Playoff Odds";
     tr.appendChild(th);
 
-
-
-
-
-
+    // Get the playoff data and sort it based on rank
     playoffOddsSortArray = []
     for(var i = 0; i < numberTeams; i++) {
         var playOdds = 0;
@@ -463,13 +478,13 @@ function updatePage() {
         return a.rank - b.rank
     });
 
-
-
+    // Get the table body and clear the rows
     tableBody = document.getElementById("playoffOddsTableBody");
     while(tableBody != null && tableBody.hasChildNodes()) {
         tableBody.removeChild(tableBody.firstChild);
     }
 
+    // Fill in the table body
     for(var i = 0; i < numberTeams; i++) {
         tr = tableBody.insertRow(-1);  
         tabCell = tr.insertCell(-1);
@@ -479,7 +494,10 @@ function updatePage() {
         for(var j = 0; j < numberTeams; j++){
             tabCell = tr.insertCell(-1);
             tabCell.innerText = Math.round(playoffOddsSortArray[i].playoffOddsArray[j]*10000)/100 + "%";
-            if(!playoffOddsSortArray[i].playoffsPossible[j]) {
+            if(i == j) {
+                tabCell.style.backgroundColor = "green";
+                tabCell.style.color = "white";
+            }else if(!playoffOddsSortArray[i].playoffsPossible[j]) {
                 tabCell.style.backgroundColor = "black";
                 tabCell.style.color = "black";
             }
@@ -494,7 +512,7 @@ function updatePage() {
     // TOP SCORES AND CLOSEST MATCHUP TABLES
     ////////////////////////////////////////////////////////
 
-    // Top scores and closest matchups
+    // Get the data for the tables
     topScoresArray = []
     closestMatchupArray = []
     for(var i = 0; i < seasonDataYear.games.length; i++) {
@@ -526,6 +544,8 @@ function updatePage() {
             })
         }
     }
+
+    // Sort the data
     closestMatchupArray.sort(function(a,b) {
         return a.diff - b.diff
     });
@@ -533,11 +553,13 @@ function updatePage() {
         return b.score - a.score
     });
 
+    // Get the top scores table element and remove rows
     tableBody = document.getElementById("topScoresTableBody");
     while(tableBody != null && tableBody.hasChildNodes()) {
         tableBody.removeChild(tableBody.firstChild);
     }
 
+    // Fill in the top scores table
     for(var i = 0; i < topScoresArray.length; i++) {
         tr = tableBody.insertRow(-1);  
         tabCell = tr.insertCell(-1);
@@ -566,11 +588,13 @@ function updatePage() {
         if(topScoresArray[i].week == numberWeeks) tabCell.style.backgroundColor = "#ffd500";
     }
 
+    // Get the matchup differences table and remove rows
     tableBody = document.getElementById("closestMatchupsTableBody");
     while(tableBody != null && tableBody.hasChildNodes()) {
         tableBody.removeChild(tableBody.firstChild);
     }
 
+    // Fill in the matchup differences table
     for(var i = 0; i < closestMatchupArray.length; i++) {
         tr = tableBody.insertRow(-1);  
         tabCell = tr.insertCell(-1);
@@ -617,13 +641,13 @@ function updatePage() {
     // EXPECTED WINS TABLE
     ////////////////////////////////////////////////////////
 
-    // Expected wins table
-
+    // Get expected wins table and remove existing rows
     tableBody = document.getElementById("expectedWinsTable");
     while(tableBody.hasChildNodes()) {
         tableBody.removeChild(tableBody.firstChild);
     }
 
+    // Get expected wins data and sort
     sortArray = []
     seasonDataYear.standings.forEach(function(team,index2,array) {
         sortArray.push({
@@ -638,6 +662,7 @@ function updatePage() {
         return a.rank - b.rank
     });
 
+    // Fill in expected wins table
     sortArray.forEach(function(team,index2,array) {
         tr = tableBody.insertRow(-1);  
         tabCell = tr.insertCell(-1);
@@ -658,13 +683,13 @@ function updatePage() {
     // SCHEDULE DIFFICULTY TABLE
     ////////////////////////////////////////////////////////
 
-    // Schedule difficulty table
-
+    // Get schedule difficulty table and remove existing rows
     tableBody = document.getElementById("scheduleDifficultyTable");
     while(tableBody.hasChildNodes()) {
         tableBody.removeChild(tableBody.firstChild);
     }
 
+    // Get schedule difficulty data and sort
     sortArray = []
     seasonDataYear.standings.forEach(function(team,index2,array) {
         sortArray.push({
@@ -679,6 +704,7 @@ function updatePage() {
         return a.rank - b.rank
     });
 
+    // Fill in schedule difficulty table
     sortArray.forEach(function(team,index2,array) {
         tr = tableBody.insertRow(-1);  
         tabCell = tr.insertCell(-1);
@@ -699,13 +725,13 @@ function updatePage() {
     // POINTS BY POSITION TABLE
     ////////////////////////////////////////////////////////
 
-    // Points by position table
-
+    // Get points per position table and remove existing rows
     tableBody = document.getElementById("pointsPerPositionTable");
     while(tableBody.hasChildNodes()) {
         tableBody.removeChild(tableBody.firstChild);
     }
 
+    // Get points per position data and sort
     sortArray = []
     totalMin = 1000;
     totalMax = 0;
@@ -844,11 +870,11 @@ function updatePage() {
             totalMax = sortArray[sortArray.length - 1].total;
         }
     })
-
     sortArray.sort(function(a,b) {
         return a.rank - b.rank
     });
 
+    // Fill in points per position table
     totalMin = Math.round(totalMin*100)/100;
     totalMax = Math.round(totalMax*100)/100;
     qbMin = Math.round(qbMin*100)/100;
@@ -1053,12 +1079,13 @@ function updatePage() {
     // MATCHUP SCATTER PLOT
     ////////////////////////////////////////////////////////
 
-    // Matchup table charts
+    // Get matchup scatter plot pulldown and clear any entries
     var selectObj = document.getElementById("team-matchupCharts");
     while(selectObj.hasChildNodes()) {
         selectObj.removeChild(selectObj.firstChild);
     }
 
+    // Fill in scatter plot matchup drawdown
     for (var i = 0; i<numberTeams; i++){
         var opt = document.createElement('option');
         opt.value = i;
@@ -1069,7 +1096,7 @@ function updatePage() {
         }
     }
 
-    // Determine median score
+    // Get score list for all teams, sort, and get median
     var scoreList = []
     for (var i = 0; i<numberTeams; i++){
         for(var j = 0; j < seasonDataYear.standings[i].scores.length; j++){
@@ -1087,8 +1114,11 @@ function updatePage() {
         median = (scoreList[median - 1] + scoreList[median]) / 2.0;
     }
 
+    // Get score range
     scoreRange = Math.max(median - scoreList[0],scoreList[scoreList.length - 1] - median);
     scoreRange = Math.floor(scoreRange/5.0 + 0.000000001) * 5 + 5;
+
+    // Fill in initial chart with highest rank individual
     loadMatchupChart();
     
 
@@ -1097,12 +1127,13 @@ function updatePage() {
     // TOP SCORES/WEEK BY POSITION TABLE AND DRAWDOWN
     ////////////////////////////////////////////////////////
 
-    // Positional Performances Table and Pulldown
+    // Get positions pull down and clear
     selectObj = document.getElementById("positions");
     while(selectObj.hasChildNodes()) {
         selectObj.removeChild(selectObj.firstChild);
     }
 
+    // Fill in pull down with applicable positions
     if("QB" in seasonDataYear.positionalPerformances) {
         var opt = document.createElement('option');
         opt.value = 0;
@@ -1136,10 +1167,12 @@ function updatePage() {
     if("DST" in seasonDataYear.positionalPerformances) {
         var opt = document.createElement('option');
         opt.value = 5;
-        opt.innerHTML = "Defense/Special Tems";
+        opt.innerHTML = "Defense/Special Teams";
         selectObj.appendChild(opt);
     }
     selectObj.selectedIndex = 0;
+
+    // Load position data with QB
     loadPositionalPerformances()
 
 }

@@ -1,0 +1,361 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>To Be Destructed</title>
+		<meta charset="utf-8" />
+        <meta name="author" content = "Christopher Wishon">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+        <script src="../assets/js/sorttable.js"></script>
+        <style>
+            .tableSection thead {
+                display: table;
+                width: calc(100% - 16px); /* assuming scrollbar width as 16px */
+            }
+            .tableSection tbody {
+                overflow: auto;
+                height: 400px;
+                display: block;
+                
+            }
+            .tableSection tr {
+                width: 100%;
+                display: table;
+                table-layout: fixed;
+            }
+
+        </style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+        <div id="wrapper">
+
+            <!-- Main -->
+            <div id="main">
+                <div class="inner">
+
+                    <!-- Header -->
+                    <header id="header">
+                        <a href="../index.html" class="logo"><strong>To Be Destructed</strong> Fantasy Football League</a>
+                        <ul class="icons">
+                            <li><a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+                            <li><a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+                            <li><a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
+                            <li><a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+                            <li><a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li>
+                        </ul>
+                    </header>
+
+                    <!-- Year/Season Radio Buttons -->
+                    <section id="yearSelect">
+                        <header class="major">
+                            <h2>Season</h2>
+                        </header>
+                        <div class="row gtr-uniform">
+                            <div class="col-2 col-12-xsmall">
+                                <input type="radio" id="season-2020" value=2020 name="season-select" onchange="radioChange()" checked>
+                                <label for="season-2020">2020</label>
+                            </div>
+                            <div class="col-2 col-12-xsmall">
+                                <input type="radio" id="season-2019" value=2019 name="season-select" onchange="radioChange()">
+                                <label for="season-2019">2019</label>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Matchup and results from the week Table -->
+                    <section id="superlatives">
+                        <header class="major">
+                            <h2>Superlatives</h2>
+                        </header>
+
+                        <div class="row">
+                            <div class="col-4 col-12-small">
+                                <h4>Points For</h4>
+                                <div class="table-wrapper">
+                                    <table class="alt center">
+                                        <thead>
+                                            <tr>
+                                                <th>Owner</th>
+                                                <th>Value</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="pointsFor">
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <br>
+                            </div>
+                            <div class="col-4 col-12-small">
+                                <h4>Points Against</h4>
+                                <div class="table-wrapper">
+                                    <table class="alt center">
+                                        <thead>
+                                            <tr>
+                                                <th>Owner</th>
+                                                <th>Value</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="pointsAgainst">
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <br>
+                            </div>
+                            <div class="col-4 col-12-small">
+                                <h4>Points From Touchdowns</h4>
+                                <div class="table-wrapper">
+                                    <table class="alt center">
+                                        <thead>
+                                            <tr>
+                                                <th>Owner</th>
+                                                <th>Value</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tdPoints">
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 col-12-small">
+                                <h4>Points From Yards</h4>
+                                <div class="table-wrapper">
+                                    <table class="alt center">
+                                        <thead>
+                                            <tr>
+                                                <th>Owner</th>
+                                                <th>Value</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="yardPoints">
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <br>
+                            </div>
+                            <div class="col-4 col-12-small">
+                                <h4>Points From DST & Kickers</h4>
+                                <div class="table-wrapper">
+                                    <table class="alt center">
+                                        <thead>
+                                            <tr>
+                                                <th>Owner</th>
+                                                <th>Value</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="dstkPoints">
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <br>
+                            </div>
+                            <div class="col-4 col-12-small">
+                                <h4>Points From Turnovers & Missed FGs</h4>
+                                <div class="table-wrapper">
+                                    <table class="alt center">
+                                        <thead>
+                                            <tr>
+                                                <th>Owner</th>
+                                                <th>Value</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="negativePoints">
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 col-12-small">
+                                <h4>Adds & Drops</h4>
+                                <div class="table-wrapper">
+                                    <table class="alt center">
+                                        <thead>
+                                            <tr>
+                                                <th>Owner</th>
+                                                <th>Value</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="addDrops">
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <br>
+                            </div>
+                            <div class="col-4 col-12-small">
+                                <h4>Active/Bench/IR Roster Moves</h4>
+                                <div class="table-wrapper">
+                                    <table class="alt center">
+                                        <thead>
+                                            <tr>
+                                                <th>Owner</th>
+                                                <th>Value</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="rosterMoves">
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <br>
+                            </div>
+                            <div class="col-4 col-12-small">
+                                <h4>Points Left on Bench</h4>
+                                <div class="table-wrapper">
+                                    <table class="alt center">
+                                        <thead>
+                                            <tr>
+                                                <th>Owner</th>
+                                                <th>Value</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="bestBallPoints">
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 col-12-small">
+                                <h4>Drafted Players Still on Roster</h4>
+                                <div class="table-wrapper">
+                                    <table class="alt center">
+                                        <thead>
+                                            <tr>
+                                                <th>Owner</th>
+                                                <th>Value</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="draftOnRoster">
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <br>
+                            </div>
+                            <div class="col-4 col-12-small">
+                                <h4>Weeks With Opp. Scoring Above Ave.</h4>
+                                <div class="table-wrapper">
+                                    <table class="alt center">
+                                        <thead>
+                                            <tr>
+                                                <th>Owner</th>
+                                                <th>Value</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="aboveAveOpponents">
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <br>
+                            </div>
+                            <div class="col-4 col-12-small">
+                                <h4>Missed Weeks from Injuries</h4>
+                                <div class="table-wrapper">
+                                    <table class="alt center">
+                                        <thead>
+                                            <tr>
+                                                <th>Owner</th>
+                                                <th>Value</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="missedWeeks">
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 col-12-small">
+                                <h4>Points from Drafted Players (Don't have to still be on roster)</h4>
+                                <div class="table-wrapper">
+                                    <table class="alt center">
+                                        <thead>
+                                            <tr>
+                                                <th>Owner</th>
+                                                <th>Value</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="draftedPoints">
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <br>
+                            </div>
+                            <div class="col-4 col-12-small">
+                                <h4>Active Roster Points from Waiver Wire Players</h4>
+                                <div class="table-wrapper">
+                                    <table class="alt center">
+                                        <thead>
+                                            <tr>
+                                                <th>Owner</th>
+                                                <th>Value</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="waiverWirePoints">
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+
+                    </section>
+
+                   
+
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div id="sidebar">
+                <div class="inner">
+
+                    <!-- Menu -->
+                    <nav id="menu">
+                        <header class="major">
+                            <h2>Menu</h2>
+                        </header>
+                        <ul>
+                            <li><a href="../index.html">Homepage</a></li>
+                            <li><a href="seasonStats.html">Season Data</a></li>
+                            <li><a href="weeklyStats.html">Weekly Results</a></li>
+                            <li><a href="#">Playoff Results</a></li>
+                            <li><a href="#">Fantasy Draft</a></li>
+                            <li><a href="#">NFL Team Data</a></li>
+                            <li><a href="#">NFL Player Data</a></li>
+                            <li><a href="#">Season Superlatives</a></li>
+                        </ul>
+                    </nav>
+
+                </div>
+            </div>
+
+        </div>
+        
+        <!-- Firebase Scripts -->
+        <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-database.js"></script>
+
+		<!-- Scripts -->
+        <script src="../assets/js/jquery.min.js"></script>
+        <script src="../assets/js/browser.min.js"></script>
+        <script src="../assets/js/breakpoints.min.js"></script>
+        <script src="../assets/js/util.js"></script>
+        <script src="../assets/js/main.js"></script>
+        <script src="../assets/js/superlatives.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+        <script type = "text/javascript">loadSuperlatives()</script>
+
+	</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>To Be Destructed</title>
+		<meta charset="utf-8" />
+        <meta name="author" content = "Christopher Wishon">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+        <script src="../assets/js/sorttable.js"></script>
+        <style>
+            .tableSection thead {
+                display: table;
+                width: calc(100% - 16px); /* assuming scrollbar width as 16px */
+            }
+            .tableSection tbody {
+                overflow: auto;
+                height: 400px;
+                display: block;
+                
+            }
+            .tableSection tr {
+                width: 100%;
+                display: table;
+                table-layout: fixed;
+            }
+
+        </style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+        <div id="wrapper">
+
+            <!-- Main -->
+            <div id="main">
+                <div class="inner">
+
+                    <!-- Header -->
+                    <header id="header">
+                        <a href="../index.html" class="logo"><strong>To Be Destructed</strong> Fantasy Football League</a>
+                        <ul class="icons">
+                            <li><a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+                            <li><a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+                            <li><a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
+                            <li><a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+                            <li><a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li>
+                        </ul>
+                    </header>
+
+                    <!-- Year/Season Radio Buttons -->
+                    <section id="weekSelect">
+                        <header class="major">
+                            <h2>Week To Analyze</h2>
+                        </header>
+                        <div class="row gtr-uniform">
+                            <div class="col-3 col-12-small">
+                                <h3>Year</h3>
+                                <select name="yearSelect" id="yearSelect" onchange="changeYear()">
+                                    <option value="2020" selected = "selected">2020</option>
+                                    <option value="2019">2019</option>
+                                </select>
+                            </div>
+                            <div class="col-3 col-12-small">
+                                <h3>Week</h3>
+                                <select name="week-select" id="week-select" onchange="changeWeek()">
+                                    <option value="1" selected>Test 1</option>
+                                    <option value="2">Test 2</option>
+                                </select>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Matchup and results from the week Table -->
+                    <section id="matchups">
+                        <header class="major">
+                            <h2>Matchups and Results</h2>
+                        </header>
+                        <div class="table-wrapper">
+                            
+                            <table class="alt sortable center">
+                                <thead>
+                                    <tr>
+                                        <th>Winner</th>
+                                        <th>Rank</th>
+                                        <th>Score</th>
+                                        <th>    </th>
+                                        <th>Loser</th>
+                                        <th>Rank</th>
+                                        <th>Score</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="matchupsTable">
+                                    <tr>
+                                        <td>XX</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>    </td>
+                                        <td>XX</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                        </div>
+                    </section>
+
+                    <!-- Point Breakdown by Team Table -->
+                    <section id="pointsBreakdown">
+                        <header class="major">
+                            <h2>Point Sources</h2>
+                        </header>
+                        <div class="table-wrapper">
+                            <table class="alt sortable center">
+                                <thead>
+                                    <tr>
+                                        <th>Rank</th>
+                                        <th>Owner</th>
+                                        <th>Score</th>
+                                        <th>TDs</th>
+                                        <th>Yards</th>
+                                        <th>Receptions</th>
+                                        <th>K/DST</th>
+                                        <th>Misc.</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="pointsBreakdownTable">
+                                    <tr>
+                                        <td>1</td>
+                                        <td>XX</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                    
+                    <!-- Positional Performance Table -->
+                    <section id="positionalPerformance">
+                        <header class="major">
+                            <h2>Performances By Position</h2>
+                        </header>
+                        <div class="row">
+                            <div class="col-4 col-12-medium">
+                                <select name="positions" id="positions" onchange="loadPositionalPerformances()">
+                                    <option value=0 selected>Quarterback</option>
+                                    <option value=1>Running Back</option>
+                                    <option value=2>Wide Receiver</option>
+                                    <option value=3>Tight End</option>
+                                    <option value=4>Kicker</option>
+                                    <option value=5>Defense/Special Teams</option>
+                                </select>
+                            </div>
+                            <div class="col-8 col-12-medium">
+                                <div class="table-wrapper">
+                                    
+                                    <table class="tableSection alt sortable center">
+                                        <thead>
+                                            <th width=9%>Rank</th>
+                                            <th width=38%>Player</th>
+                                            <th width=14%>Points</th>
+                                            <th width=27%>Owner</th>
+                                            <th width=12%>Status</th>
+                                        </thead>
+                                        <font size="2">
+                                        <tbody id="positionalPerformancesTable">
+                                            <tr>
+                                                <td>1</td>
+                                                <td>XXX</td>
+                                                <td>100</td>
+                                                <td>XXX</td>
+                                                <td>XXX</td>
+                                            </tr>
+                                        </tbody>
+                                    </font>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Best Ball Table -->
+                    <section id="bestBall">
+                        <header class="major">
+                            <h2>Best Ball Results</h2>
+                        </header>
+                        <h3>Default sorting is greatest best ball score increase to lowest. Highlighted entries indicate best ball scoring would have flipped results.</h3>
+                        <div class="table-wrapper">
+                            <font size="2">
+                            <table class="alt sortable center">
+                                <thead>
+                                    <tr>
+                                        <th>Rank</th>
+                                        <th>Owner</th>
+                                        <th>Result</th>
+                                        <th>Score</th>
+                                        <th>Best Ball Score</th>
+                                        <th>Players To Sit</th>
+                                        <th>Players To Start</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bestBallTable">
+                                    <tr>
+                                        <td>1</td>
+                                        <td>XX</td>
+                                        <td>XX</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>XX</td>
+                                        <td>XX</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            </font>
+                        </div>
+                    </section>
+
+                    <!-- Matchup Timelines -->
+                    <section id="timelines">
+                        <header class="major">
+                            <h2>Matchup Timeline and Details</h2>
+                        </header>
+                        <div class="row gtr-uniform">
+                            <div class="col-3 col-12-small">
+                                <h3>Matchup:</h3>
+                            </div>
+                            <div class="col-6 col-12-small">
+                                <select name="matchup-select" id="matchup-select" onchange="changeMatchup()">
+                                    <option value="">XX</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <canvas id="matchupTrendChart" width="700" height="350"></canvas>
+                        <br>
+                        <h3 id="winnerVloserHeader">Winner (Left) vs. Loser (Right)</h3>
+                        <div class="table-wrapper">
+                            <table class="alt center">
+                                <thead>
+                                    <tr>
+                                        <th>Position</th>
+                                        <th>Player</th>
+                                        <th>Score</th>
+                                        <th>    </th>
+                                        <th>Score</th>
+                                        <th>Player</th>
+                                        <th>Position</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="matchupTableDetails">
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div id="sidebar">
+                <div class="inner">
+
+                    <!-- Menu -->
+                    <nav id="menu">
+                        <header class="major">
+                            <h2>Menu</h2>
+                        </header>
+                        <ul>
+                            <li><a href="../index.html">Homepage</a></li>
+                            <li><a href="seasonStats.html">Season Data</a></li>
+                            <li><a href="#">Weekly Results</a></li>
+                            <li><a href="#">Playoff Results</a></li>
+                            <li><a href="#">Fantasy Draft</a></li>
+                            <li><a href="#">NFL Team Data</a></li>
+                            <li><a href="#">NFL Player Data</a></li>
+                            <li><a href="superlatives.html">Season Superlatives</a></li>
+                        </ul>
+                    </nav>
+
+                </div>
+            </div>
+
+        </div>
+        
+        <!-- Firebase Scripts -->
+        <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-database.js"></script>
+
+		<!-- Scripts -->
+        <script src="../assets/js/jquery.min.js"></script>
+        <script src="../assets/js/browser.min.js"></script>
+        <script src="../assets/js/breakpoints.min.js"></script>
+        <script src="../assets/js/util.js"></script>
+        <script src="../assets/js/main.js"></script>
+        <script src="../assets/js/weeklyStats.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+        <script type = "text/javascript">loadWeeklyStats()</script>
+
+	</body>
+</html>
