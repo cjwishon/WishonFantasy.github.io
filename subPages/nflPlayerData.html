@@ -1,0 +1,206 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>To Be Destructed</title>
+		<meta charset="utf-8" />
+        <meta name="author" content = "Christopher Wishon">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+        <script src="../assets/js/sorttable.js"></script>
+        <style>
+            .tableSection thead {
+                display: table;
+                width: calc(100% - 16px); /* assuming scrollbar width as 16px */
+            }
+            .tableSection tbody {
+                overflow: auto;
+                height: 400px;
+                display: block;
+                
+            }
+            .tableSection tr {
+                width: 100%;
+                display: table;
+                table-layout: fixed;
+            }
+
+        </style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+        <div id="wrapper">
+
+            <!-- Main -->
+            <div id="main">
+                <div class="inner">
+
+                    <!-- Header -->
+                    <header id="header">
+                        <a href="../index.html" class="logo"><strong>To Be Destructed</strong> Fantasy Football League</a>
+                        <ul class="icons">
+                            <li><a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+                            <li><a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+                            <li><a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
+                            <li><a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+                            <li><a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li>
+                        </ul>
+                    </header>
+
+                    <!-- Data select section -->
+                    <section id="dataSelect">
+
+                        <!-- Section Header -->
+                        <header class="major">
+                            <h2>NFL Player Statistics</h2>
+                        </header>
+
+                        <!-- Data Control Buttons -->
+                        <div class="row gtr-uniform">
+                            <div class="col-2 col-6-medium">
+                                <b>Position:</b><br>
+                                <select name="positions" id="positions" onchange="changePosition()">
+                                    <option value="QB" selected>QB</option>
+                                    <option value="RB">RB</option>
+                                    <option value="WR">WR</option>
+                                    <option value="TE">TE</option>
+                                    <option value="FLEX">FLEX</option>
+                                    <option value="SUPERFLEX">SUPERFLEX</option>
+                                    <option value="K">K</option>
+                                    <option value="DST">D/ST</option>
+                                </select>
+                            </div>
+                            <div class="col-2 col-12-medium">
+                                <input type="radio" id="average" value="average" name="total-select" onchange="flipTotalAverage()" checked>
+                                <label for="average">Average</label>
+                                <input type="radio" id="total" value="total" name="total-select" onchange="flipTotalAverage()">
+                                <label for="total">Total</label>
+                            </div>
+                            <div class="col-3 col-8-medium">
+                                <b># Weeks To Analyze:</b>
+                                <select name="weeks" id="weeks" onchange="changeWeekCount()">
+                                    <option value=1>1</option>
+                                    <option value=2>2</option>
+                                    <option value=3>3</option>
+                                    <option value=4>4</option>
+                                    <option value=5>5</option>
+                                    <option value=6>6</option>
+                                    <option value=7>7</option>
+                                    <option value=8>8</option>
+                                    <option value=9>9</option>
+                                    <option value=10>10</option>
+                                    <option value=11>11</option>
+                                    <option value=12>12</option>
+                                    <option value=13>13</option>
+                                    <option value=14>14</option>
+                                    <option value=15>15</option>
+                                    <option value=16 selected>16</option>
+
+                                </select>
+                            </div>
+                            <div class="col-3 col-8-medium">
+                                <b>Min. Games Played:</b>
+                                <select name="weeksRequired" id="weeksRequired" onchange="changeWeekRequiredCount()">
+                                    <option value=1>1</option>
+                                    <option value=2>2</option>
+                                    <option value=3>3</option>
+                                    <option value=4>4</option>
+                                    <option value=5>5</option>
+                                    <option value=6>6</option>
+                                    <option value=7>7</option>
+                                    <option value=8 selected>8</option>
+                                    <option value=9>9</option>
+                                    <option value=10>10</option>
+                                    <option value=11>11</option>
+                                    <option value=12>12</option>
+                                    <option value=13>13</option>
+                                    <option value=14>14</option>
+                                    <option value=15>15</option>
+                                    <option value=16>16</option>
+
+                                </select>
+                            </div>
+                            <div class="col-2 col-12-medium">
+                                <input type="radio" id="Passing" value="Passing" name="statDisplayRadio" onchange="flipStatDisplay()" checked>
+                                <label for="Passing"><span id="PassingText">Passing</span></label>
+                                <input type="radio" id="Rushing" value="Rushing" name="statDisplayRadio" onchange="flipStatDisplay()">
+                                <label for="Rushing"><span id="RushingText">Rushing</span></label>
+                                <input type="radio" id="Receiving" value="Receiving" name="statDisplayRadio" onchange="flipStatDisplay()" disabled>
+                                <label for="Receiving"><span id="ReceivingText"><s>Receiving</s></span></label>
+                                <input type="radio" id="Total" value="Total" name="statDisplayRadio" onchange="flipStatDisplay()">
+                                <label for="Total"><span id="TotalText">Total</span></label>
+                            </div>
+                            
+                        </div>
+                        <br>
+                        <!-- Data Table -->
+                        <div class="row">
+                            <font size="2">
+                            <div class="table-wrapper">
+                                <table class="alt center" id="tableEntire">
+                                    <thead id="tableHead">
+                                    </thead>
+                                    <tbody id="tableBody">
+                                    </tbody>
+                                </table>
+                            </div>
+                            </font>
+                        </div>
+
+                    </section>
+                    
+                    <!-- Main section -->
+                    <section id="tableSection">
+                
+                    </section>
+
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div id="sidebar">
+                <div class="inner">
+
+                    <!-- Menu -->
+                    <nav id="menu">
+                        <header class="major">
+                            <h2>Menu</h2>
+                        </header>
+                        <ul>
+                            <li><a href="../index.html">Homepage</a></li>
+                            <li><a href="seasonStats.html">Season Data</a></li>
+                            <li><a href="weeklyStats.html">Weekly Results</a></li>
+                            <li><a href="#">Playoff Results</a></li>
+                            <li><a href="#">Fantasy Draft</a></li>
+                            <li><a href="nflTeamData.html">NFL Team Data</a></li>
+                            <li><a href="#">NFL Player Data</a></li>
+                            <li><a href="superlatives.html">Season Superlatives</a></li>
+                        </ul>
+                    </nav>
+
+                </div>
+            </div>
+
+        </div>
+        
+        <!-- Firebase Scripts -->
+        <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-database.js"></script>
+
+		<!-- Scripts -->
+        <script src="../assets/js/jquery.min.js"></script>
+        <script src="../assets/js/browser.min.js"></script>
+        <script src="../assets/js/breakpoints.min.js"></script>
+        <script src="../assets/js/util.js"></script>
+        <script src="../assets/js/main.js"></script>
+        <script src="../assets/js/nflPlayerData.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+        <script type = "text/javascript">loadNFLPlayerData()</script>
+
+	</body>
+</html>

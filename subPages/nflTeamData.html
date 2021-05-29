@@ -1,0 +1,174 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>To Be Destructed</title>
+		<meta charset="utf-8" />
+        <meta name="author" content = "Christopher Wishon">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+        <script src="../assets/js/sorttable.js"></script>
+        <style>
+            .tableSection thead {
+                display: table;
+                width: calc(100% - 16px); /* assuming scrollbar width as 16px */
+            }
+            .tableSection tbody {
+                overflow: auto;
+                height: 400px;
+                display: block;
+                
+            }
+            .tableSection tr {
+                width: 100%;
+                display: table;
+                table-layout: fixed;
+            }
+
+        </style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+        <div id="wrapper">
+
+            <!-- Main -->
+            <div id="main">
+                <div class="inner">
+
+                    <!-- Header -->
+                    <header id="header">
+                        <a href="../index.html" class="logo"><strong>To Be Destructed</strong> Fantasy Football League</a>
+                        <ul class="icons">
+                            <li><a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+                            <li><a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+                            <li><a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
+                            <li><a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+                            <li><a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li>
+                        </ul>
+                    </header>
+
+                    <!-- Data select section -->
+                    <section id="dataSelect">
+
+                        <!-- Section Header -->
+                        <header class="major">
+                            <h2>NFL Team Statistics</h2>
+                        </header>
+
+                        <!-- Data Control Buttons -->
+                        <div class="row gtr-uniform">
+                            <div class="col-2 col-12-medium">
+                                <input type="radio" id="offense" value="offense" name="type-select" onchange="flipOffDef()" checked>
+                                <label for="offense">Offense</label>
+                                <input type="radio" id="defense" value="defense" name="type-select" onchange="flipOffDef()">
+                                <label for="defense">Defense</label>
+                            </div>
+                            <div class="col-2 col-12-medium">
+                                <input type="radio" id="totals" value="offense" name="relative-select" onchange="flipRawRelative()" checked>
+                                <label for="totals">Raw Stats</label>
+                                <input type="radio" id="relative" value="defense" name="relative-select" onchange="flipRawRelative()">
+                                <label for="relative"><span title="Team Statistics Adjusted For +/- Over Expected Based On Opponent">Relative Stats*</span></label>
+                            </div>
+                            <div class="col-2 col-12-medium">
+                                <input type="radio" id="fantasy" value="offense" name="stats-select" onchange="flipFantasyBasic()" checked>
+                                <label for="fantasy">Fantasy Points</label>
+                                <input type="radio" id="basicStats" value="defense" name="stats-select" onchange="flipFantasyBasic()">
+                                <label for="basicStats">Basic Stats</label>
+                            </div>
+                            <div class="col-2 col-6-medium">
+                                <b># Weeks To Analyze:</b><br>
+                                <select name="weeks" id="weeks" onchange="changeWeekCount()">
+                                    <option value=3>3</option>
+                                    <option value=4>4</option>
+                                    <option value=5>5</option>
+                                    <option value=6>6</option>
+                                    <option value=7>7</option>
+                                    <option value=8>8</option>
+                                    <option value=9>9</option>
+                                    <option value=10>10</option>
+                                    <option value=11>11</option>
+                                    <option value=12>12</option>
+                                    <option value=13>13</option>
+                                    <option value=14>14</option>
+                                    <option value=15>15</option>
+                                    <option value=16 selected>16</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <!-- Data Table -->
+                        <div class="row">
+                            <div class="table-wrapper">
+                                <table class="alt center" id="tableEntire">
+                                    <thead id="tableHead">
+                                    </thead>
+                                    <tbody id="tableBody">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <br><br>
+                        * Relative statistics adjust given the actual opponents over the given time horizon. 
+                        For example, assume the Patriots scored 100, 110, and 120 total fantasy points over the last three weeks. 
+                        But their opponents over that same period (ignoring games where they played the Patriots) give up 130, 80, and 100 points on average.
+                        Therefore the Patriots relative total fantasy points would be (100 - 130 + 110 - 80 + 100 - 120)/3 = -6.67 implying they scored roughly 7 points less on average over the last three weeks then their opponent would normally permit.
+                        This statistic attempts to adjust for schedule in case a team had a easy/hard schedule over a given span.
+
+                    </section>
+                    
+                    <!-- Main section -->
+                    <section id="tableSection">
+                
+                    </section>
+
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div id="sidebar">
+                <div class="inner">
+
+                    <!-- Menu -->
+                    <nav id="menu">
+                        <header class="major">
+                            <h2>Menu</h2>
+                        </header>
+                        <ul>
+                            <li><a href="../index.html">Homepage</a></li>
+                            <li><a href="seasonStats.html">Season Data</a></li>
+                            <li><a href="weeklyStats.html">Weekly Results</a></li>
+                            <li><a href="#">Playoff Results</a></li>
+                            <li><a href="#">Fantasy Draft</a></li>
+                            <li><a href="#">NFL Team Data</a></li>
+                            <li><a href="nflPlayerData.html">NFL Player Data</a></li>
+                            <li><a href="superlatives.html">Season Superlatives</a></li>
+                        </ul>
+                    </nav>
+
+                </div>
+            </div>
+
+        </div>
+        
+        <!-- Firebase Scripts -->
+        <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-database.js"></script>
+
+		<!-- Scripts -->
+        <script src="../assets/js/jquery.min.js"></script>
+        <script src="../assets/js/browser.min.js"></script>
+        <script src="../assets/js/breakpoints.min.js"></script>
+        <script src="../assets/js/util.js"></script>
+        <script src="../assets/js/main.js"></script>
+        <script src="../assets/js/nflTeamData.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+        <script type = "text/javascript">loadNFLTeamData()</script>
+
+	</body>
+</html>
