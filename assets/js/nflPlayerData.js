@@ -147,6 +147,9 @@ function updateDataTable() {
                 var CarriesInside10 = 0;
                 var RushYards = 0;
                 var RushTDs = 0;
+                var great = 0;
+                var good = 0;
+                var bust = 0;
                 for(var j = 0; j < weeks; j++) {
                     if(player['Points'][j]['GamePlayed']) {
                         GamesPlayed += 1;
@@ -160,6 +163,9 @@ function updateDataTable() {
                         CarriesInside10 += player['Points'][j]['CarriesInside10'];
                         RushYards += player['Points'][j]['RushYards'];
                         RushTDs += player['Points'][j]['RushTDs'];
+                        if(player['Points'][j]['FantasyPoints'] > 26.999999) great += 1
+                        if(player['Points'][j]['FantasyPoints'] > 20.999999) good += 1
+                        if(player['Points'][j]['FantasyPoints'] <= 14.999999) bust += 1
                     }
                 }
                 if(GamesPlayed > 0){
@@ -178,7 +184,10 @@ function updateDataTable() {
                         "CarriesTotal": CarriesTotal, 
                         "CarriesInside10": CarriesInside10, 
                         "RushYards": RushYards,
-                        "RushTDs": RushTDs
+                        "RushTDs": RushTDs,
+                        "Great": Math.round(great/GamesPlayed*1000)/10,
+                        "Good": Math.round(good/GamesPlayed*1000)/10,
+                        "Bust": Math.round(bust/GamesPlayed*1000)/10
                     })
                 }
             }
@@ -199,6 +208,9 @@ function updateDataTable() {
                 var CarriesInside10 = 0;
                 var RushYards = 0;
                 var RushTDs = 0;
+                var great = 0;
+                var good = 0;
+                var bust = 0;
                 for(var j = 0; j < weeks; j++) {
                     if(player['Points'][j]['GamePlayed']) {
                         GamesPlayed += 1;
@@ -212,6 +224,9 @@ function updateDataTable() {
                         CarriesInside10 += player['Points'][j]['CarriesInside10'];
                         RushYards += player['Points'][j]['RushYards'];
                         RushTDs += player['Points'][j]['RushTDs'];
+                        if(player['Points'][j]['FantasyPoints'] > 20.999999) great += 1
+                        if(player['Points'][j]['FantasyPoints'] > 10.999999) good += 1
+                        if(player['Points'][j]['FantasyPoints'] <= 6.999999) bust += 1
                     }
                 }
                 if(GamesPlayed > 0){
@@ -230,7 +245,10 @@ function updateDataTable() {
                         "CarriesTotal": CarriesTotal, 
                         "CarriesInside10": CarriesInside10, 
                         "RushYards": RushYards,
-                        "RushTDs": RushTDs
+                        "RushTDs": RushTDs,
+                        "Great": Math.round(great/GamesPlayed*1000)/10,
+                        "Good": Math.round(good/GamesPlayed*1000)/10,
+                        "Bust": Math.round(bust/GamesPlayed*1000)/10
                     })
                 }
             }
@@ -251,6 +269,9 @@ function updateDataTable() {
                 var CarriesInside10 = 0;
                 var RushYards = 0;
                 var RushTDs = 0;
+                var great = 0;
+                var good = 0;
+                var bust = 0;
                 for(var j = 0; j < weeks; j++) {
                     if(player['Points'][j]['GamePlayed']) {
                         GamesPlayed += 1;
@@ -264,6 +285,9 @@ function updateDataTable() {
                         CarriesInside10 += player['Points'][j]['CarriesInside10'];
                         RushYards += player['Points'][j]['RushYards'];
                         RushTDs += player['Points'][j]['RushTDs'];
+                        if(player['Points'][j]['FantasyPoints'] > 19.999999) great += 1
+                        if(player['Points'][j]['FantasyPoints'] > 11.999999) good += 1
+                        if(player['Points'][j]['FantasyPoints'] <= 7.999999) bust += 1
                     }
                 }
                 if(GamesPlayed > 0){
@@ -282,7 +306,10 @@ function updateDataTable() {
                         "CarriesTotal": CarriesTotal, 
                         "CarriesInside10": CarriesInside10, 
                         "RushYards": RushYards,
-                        "RushTDs": RushTDs
+                        "RushTDs": RushTDs,
+                        "Great": Math.round(great/GamesPlayed*1000)/10,
+                        "Good": Math.round(good/GamesPlayed*1000)/10,
+                        "Bust": Math.round(bust/GamesPlayed*1000)/10
                     })
                 }
             }
@@ -303,6 +330,9 @@ function updateDataTable() {
                 var CarriesInside10 = 0;
                 var RushYards = 0;
                 var RushTDs = 0;
+                var great = 0;
+                var good = 0;
+                var bust = 0;
                 for(var j = 0; j < weeks; j++) {
                     if(player['Points'][j]['GamePlayed']) {
                         GamesPlayed += 1;
@@ -316,6 +346,9 @@ function updateDataTable() {
                         CarriesInside10 += player['Points'][j]['CarriesInside10'];
                         RushYards += player['Points'][j]['RushYards'];
                         RushTDs += player['Points'][j]['RushTDs'];
+                        if(player['Points'][j]['FantasyPoints'] > 14.999999) great += 1
+                        if(player['Points'][j]['FantasyPoints'] > 9.999999) good += 1
+                        if(player['Points'][j]['FantasyPoints'] <= 6.999999) bust += 1
                     }
                 }
                 if(GamesPlayed > 0){
@@ -334,7 +367,10 @@ function updateDataTable() {
                         "CarriesTotal": CarriesTotal, 
                         "CarriesInside10": CarriesInside10, 
                         "RushYards": RushYards,
-                        "RushTDs": RushTDs
+                        "RushTDs": RushTDs,
+                        "Great": Math.round(great/GamesPlayed*1000)/10,
+                        "Good": Math.round(good/GamesPlayed*1000)/10,
+                        "Bust": Math.round(bust/GamesPlayed*1000)/10
                     })
                 }
             }
@@ -349,6 +385,9 @@ function updateDataTable() {
                 var FGsMade = 0;
                 var FGsMissed = 0;
                 var ExtraPoints = 0;
+                var great = 0;
+                var good = 0;
+                var bust = 0;
                 for(var j = 0; j < weeks; j++) {
                     if(player['Points'][j]['GamePlayed']) {
                         GamesPlayed += 1;
@@ -356,6 +395,9 @@ function updateDataTable() {
                         FGsMade += player['Points'][j]['FGsMade'];
                         FGsMissed += player['Points'][j]['FGsMissed'];
                         ExtraPoints += player['Points'][j]['ExtraPoints'];
+                        if(player['Points'][j]['FantasyPoints'] > 14.999999) great += 1
+                        if(player['Points'][j]['FantasyPoints'] > 9.999999) good += 1
+                        if(player['Points'][j]['FantasyPoints'] <= 4.999999) bust += 1
                     }
                 }
                 if(GamesPlayed > 0){
@@ -368,7 +410,10 @@ function updateDataTable() {
                         "PPG": FantasyPoints/GamesPlayed, 
                         "FGsMade": FGsMade,
                         "FGsMissed": FGsMissed,
-                        "ExtraPoints": ExtraPoints
+                        "ExtraPoints": ExtraPoints,
+                        "Great": Math.round(great/GamesPlayed*1000)/10,
+                        "Good": Math.round(good/GamesPlayed*1000)/10,
+                        "Bust": Math.round(bust/GamesPlayed*1000)/10
                     })
                 }
             }
@@ -384,6 +429,9 @@ function updateDataTable() {
                 var Sacks = 0;
                 var Ints = 0;
                 var Fumbles = 0;
+                var great = 0;
+                var good = 0;
+                var bust = 0;
                 for(var j = 0; j < weeks; j++) {
                     if(player['Points'][j]['GamePlayed']) {
                         GamesPlayed += 1;
@@ -392,6 +440,9 @@ function updateDataTable() {
                         Sacks += player['Points'][j]['Sacks'];
                         Ints += player['Points'][j]['Ints'];
                         Fumbles += player['Points'][j]['Fumbles'];
+                        if(player['Points'][j]['FantasyPoints'] > 11.999999) great += 1
+                        if(player['Points'][j]['FantasyPoints'] > 7.999999) good += 1
+                        if(player['Points'][j]['FantasyPoints'] <= 3.999999) bust += 1
                     }
                 }
                 if(GamesPlayed > 0){
@@ -405,7 +456,10 @@ function updateDataTable() {
                         "TDs": TDs,
                         "Sacks": Sacks,
                         "Ints": Ints,
-                        "Fumbles": Fumbles
+                        "Fumbles": Fumbles,
+                        "Great": Math.round(great/GamesPlayed*1000)/10,
+                        "Good": Math.round(good/GamesPlayed*1000)/10,
+                        "Bust": Math.round(bust/GamesPlayed*1000)/10
                     })
                 }
             }
@@ -648,6 +702,27 @@ function updateTable() {
             th = document.createElement("TH");
             th.innerHTML = "TDs";
             tr.appendChild(th);
+            th = document.createElement("TH");
+            th.innerHTML = "Great %";
+            tr.appendChild(th);
+            th = document.createElement("TH");
+            th.innerHTML = "Good %";
+            tr.appendChild(th);
+            th = document.createElement("TH");
+            th.innerHTML = "Bust %";
+            tr.appendChild(th);
+
+            // Find maximimum game ratings
+            maxGreat = 0
+            maxGood = 0
+            maxBust = 0
+            for(var i = 0; i < tableData.length; i++){
+                if(tableData[i]['GamesPlayed'] >= weeksRequired) {
+                    if(tableData[i]['Great'] > maxGreat) maxGreat = tableData[i]['Great'];
+                    if(tableData[i]['Good'] > maxGood) maxGood = tableData[i]['Good'];
+                    if(tableData[i]['Bust'] > maxBust) maxBust = tableData[i]['Bust'];
+                }
+            }
 
             // Fill in table body
             if(average) {
@@ -670,6 +745,18 @@ function updateTable() {
                         tabCell.innerText = Math.round((tableData[i]['PassAttemptsInside10']+tableData[i]['CarriesInside10'])/tableData[i]['GamesPlayed']*100)/100;
                         tabCell = tr.insertCell(-1);
                         tabCell.innerText = Math.round((tableData[i]['PassTDs']+tableData[i]['RushTDs'])/tableData[i]['GamesPlayed']*100)/100;
+                        tabCell = tr.insertCell(-1);
+                        tabCell.innerText = tableData[i]['Great']
+                        if(tableData[i]['Great'] > maxGreat/2) tabCell.style.backgroundColor = "rgba(" + Math.round((maxGreat - tableData[i]['Great'])/(maxGreat/2)*255) + ", 255, 0, 0.5)"; 
+                        else tabCell.style.backgroundColor = "rgba(255, " + Math.round((tableData[i]['Great'] - 0)/(maxGreat/2)*255) + ", 0, 0.5)";
+                        tabCell = tr.insertCell(-1);
+                        tabCell.innerText = tableData[i]['Good']
+                        if(tableData[i]['Good'] > maxGood/2) tabCell.style.backgroundColor = "rgba(" + Math.round((maxGood - tableData[i]['Good'])/(maxGood/2)*255) + ", 255, 0, 0.5)"; 
+                        else tabCell.style.backgroundColor = "rgba(255, " + Math.round((tableData[i]['Good'] - 0)/(maxGood/2)*255) + ", 0, 0.5)";
+                        tabCell = tr.insertCell(-1);
+                        tabCell.innerText = tableData[i]['Bust']
+                        if(tableData[i]['Bust'] > maxBust/2) tabCell.style.backgroundColor = "rgba(255, " + Math.round((maxBust - tableData[i]['Bust'])/(maxBust/2)*255) + ", 0, 0.5)"; 
+                        else tabCell.style.backgroundColor = "rgba(" + Math.round((tableData[i]['Bust'] - 0)/(maxBust/2)*255) + ", 255, 0, 0.5)";
                     }
                 }
             } else {
@@ -692,6 +779,18 @@ function updateTable() {
                         tabCell.innerText = tableData[i]['PassAttemptsInside10']+tableData[i]['CarriesInside10'];
                         tabCell = tr.insertCell(-1);
                         tabCell.innerText = tableData[i]['PassTDs']+tableData[i]['RushTDs'];
+                        tabCell = tr.insertCell(-1);
+                        tabCell.innerText = tableData[i]['Great']
+                        if(tableData[i]['Great'] > maxGreat/2) tabCell.style.backgroundColor = "rgba(" + Math.round((maxGreat - tableData[i]['Great'])/(maxGreat/2)*255) + ", 255, 0, 0.5)"; 
+                        else tabCell.style.backgroundColor = "rgba(255, " + Math.round((tableData[i]['Great'] - 0)/(maxGreat/2)*255) + ", 0, 0.5)";
+                        tabCell = tr.insertCell(-1);
+                        tabCell.innerText = tableData[i]['Good']
+                        if(tableData[i]['Good'] > maxGood/2) tabCell.style.backgroundColor = "rgba(" + Math.round((maxGood - tableData[i]['Good'])/(maxGood/2)*255) + ", 255, 0, 0.5)"; 
+                        else tabCell.style.backgroundColor = "rgba(255, " + Math.round((tableData[i]['Good'] - 0)/(maxGood/2)*255) + ", 0, 0.5)";
+                        tabCell = tr.insertCell(-1);
+                        tabCell.innerText = tableData[i]['Bust']
+                        if(tableData[i]['Bust'] > maxBust/2) tabCell.style.backgroundColor = "rgba(255, " + Math.round((maxBust - tableData[i]['Bust'])/(maxBust/2)*255) + ", 0, 0.5)"; 
+                        else tabCell.style.backgroundColor = "rgba(" + Math.round((tableData[i]['Bust'] - 0)/(maxBust/2)*255) + ", 255, 0, 0.5)";
                     }
                 }
             }
@@ -901,6 +1000,28 @@ function updateTable() {
             th = document.createElement("TH");
             th.innerHTML = "TDs";
             tr.appendChild(th);
+            th = document.createElement("TH");
+            th.innerHTML = "Great %";
+            tr.appendChild(th);
+            th = document.createElement("TH");
+            th.innerHTML = "Good %";
+            tr.appendChild(th);
+            th = document.createElement("TH");
+            th.innerHTML = "Bust %";
+            tr.appendChild(th);
+
+            // Find maximimum game ratings
+            maxGreat = 0
+            maxGood = 0
+            maxBust = 0
+            for(var i = 0; i < tableData.length; i++){
+                if(tableData[i]['GamesPlayed'] >= weeksRequired) {
+                    if(tableData[i]['Great'] > maxGreat) maxGreat = tableData[i]['Great'];
+                    if(tableData[i]['Good'] > maxGood) maxGood = tableData[i]['Good'];
+                    if(tableData[i]['Bust'] > maxBust) maxBust = tableData[i]['Bust'];
+                }
+            }
+
 
             // Fill in table body
             if(average) {
@@ -923,6 +1044,18 @@ function updateTable() {
                         tabCell.innerText = Math.round((tableData[i]['TargetsInside10']+tableData[i]['CarriesInside10'])/tableData[i]['GamesPlayed']*100)/100;
                         tabCell = tr.insertCell(-1);
                         tabCell.innerText = Math.round((tableData[i]['RecTDs']+tableData[i]['RushTDs'])/tableData[i]['GamesPlayed']*100)/100;
+                        tabCell = tr.insertCell(-1);
+                        tabCell.innerText = tableData[i]['Great']
+                        if(tableData[i]['Great'] > maxGreat/2) tabCell.style.backgroundColor = "rgba(" + Math.round((maxGreat - tableData[i]['Great'])/(maxGreat/2)*255) + ", 255, 0, 0.5)"; 
+                        else tabCell.style.backgroundColor = "rgba(255, " + Math.round((tableData[i]['Great'] - 0)/(maxGreat/2)*255) + ", 0, 0.5)";
+                        tabCell = tr.insertCell(-1);
+                        tabCell.innerText = tableData[i]['Good']
+                        if(tableData[i]['Good'] > maxGood/2) tabCell.style.backgroundColor = "rgba(" + Math.round((maxGood - tableData[i]['Good'])/(maxGood/2)*255) + ", 255, 0, 0.5)"; 
+                        else tabCell.style.backgroundColor = "rgba(255, " + Math.round((tableData[i]['Good'] - 0)/(maxGood/2)*255) + ", 0, 0.5)";
+                        tabCell = tr.insertCell(-1);
+                        tabCell.innerText = tableData[i]['Bust']
+                        if(tableData[i]['Bust'] > maxBust/2) tabCell.style.backgroundColor = "rgba(255, " + Math.round((maxBust - tableData[i]['Bust'])/(maxBust/2)*255) + ", 0, 0.5)"; 
+                        else tabCell.style.backgroundColor = "rgba(" + Math.round((tableData[i]['Bust'] - 0)/(maxBust/2)*255) + ", 255, 0, 0.5)";
                     }
                 }
             } else {
@@ -945,6 +1078,18 @@ function updateTable() {
                         tabCell.innerText = tableData[i]['TargetsInside10']+tableData[i]['CarriesInside10'];
                         tabCell = tr.insertCell(-1);
                         tabCell.innerText = tableData[i]['RecTDs']+tableData[i]['RushTDs'];
+                        tabCell = tr.insertCell(-1);
+                        tabCell.innerText = tableData[i]['Great']
+                        if(tableData[i]['Great'] > maxGreat/2) tabCell.style.backgroundColor = "rgba(" + Math.round((maxGreat - tableData[i]['Great'])/(maxGreat/2)*255) + ", 255, 0, 0.5)"; 
+                        else tabCell.style.backgroundColor = "rgba(255, " + Math.round((tableData[i]['Great'] - 0)/(maxGreat/2)*255) + ", 0, 0.5)";
+                        tabCell = tr.insertCell(-1);
+                        tabCell.innerText = tableData[i]['Good']
+                        if(tableData[i]['Good'] > maxGood/2) tabCell.style.backgroundColor = "rgba(" + Math.round((maxGood - tableData[i]['Good'])/(maxGood/2)*255) + ", 255, 0, 0.5)"; 
+                        else tabCell.style.backgroundColor = "rgba(255, " + Math.round((tableData[i]['Good'] - 0)/(maxGood/2)*255) + ", 0, 0.5)";
+                        tabCell = tr.insertCell(-1);
+                        tabCell.innerText = tableData[i]['Bust']
+                        if(tableData[i]['Bust'] > maxBust/2) tabCell.style.backgroundColor = "rgba(255, " + Math.round((maxBust - tableData[i]['Bust'])/(maxBust/2)*255) + ", 0, 0.5)"; 
+                        else tabCell.style.backgroundColor = "rgba(" + Math.round((tableData[i]['Bust'] - 0)/(maxBust/2)*255) + ", 255, 0, 0.5)";
                     }
                 }
             }
@@ -979,6 +1124,27 @@ function updateTable() {
         th = document.createElement("TH");
         th.innerHTML = "TDs";
         tr.appendChild(th);
+        th = document.createElement("TH");
+        th.innerHTML = "Great %";
+        tr.appendChild(th);
+        th = document.createElement("TH");
+        th.innerHTML = "Good %";
+        tr.appendChild(th);
+        th = document.createElement("TH");
+        th.innerHTML = "Bust %";
+        tr.appendChild(th);
+
+        // Find maximimum game ratings
+        maxGreat = 0
+        maxGood = 0
+        maxBust = 0
+        for(var i = 0; i < tableData.length; i++){
+            if(tableData[i]['GamesPlayed'] >= weeksRequired) {
+                if(tableData[i]['Great'] > maxGreat) maxGreat = tableData[i]['Great'];
+                if(tableData[i]['Good'] > maxGood) maxGood = tableData[i]['Good'];
+                if(tableData[i]['Bust'] > maxBust) maxBust = tableData[i]['Bust'];
+            }
+        }
 
         // Fill in table body
         if(average) {
@@ -1011,7 +1177,18 @@ function updateTable() {
                         tabCell = tr.insertCell(-1);
                         tabCell.innerText = Math.round((tableData[i]['RecTDs']+tableData[i]['RushTDs'])/tableData[i]['GamesPlayed']*100)/100;
                     }
-                    
+                    tabCell = tr.insertCell(-1);
+                    tabCell.innerText = tableData[i]['Great']
+                    if(tableData[i]['Great'] > maxGreat/2) tabCell.style.backgroundColor = "rgba(" + Math.round((maxGreat - tableData[i]['Great'])/(maxGreat/2)*255) + ", 255, 0, 0.5)"; 
+                    else tabCell.style.backgroundColor = "rgba(255, " + Math.round((tableData[i]['Great'] - 0)/(maxGreat/2)*255) + ", 0, 0.5)";
+                    tabCell = tr.insertCell(-1);
+                    tabCell.innerText = tableData[i]['Good']
+                    if(tableData[i]['Good'] > maxGood/2) tabCell.style.backgroundColor = "rgba(" + Math.round((maxGood - tableData[i]['Good'])/(maxGood/2)*255) + ", 255, 0, 0.5)"; 
+                    else tabCell.style.backgroundColor = "rgba(255, " + Math.round((tableData[i]['Good'] - 0)/(maxGood/2)*255) + ", 0, 0.5)";
+                    tabCell = tr.insertCell(-1);
+                    tabCell.innerText = tableData[i]['Bust']
+                    if(tableData[i]['Bust'] > maxBust/2) tabCell.style.backgroundColor = "rgba(255, " + Math.round((maxBust - tableData[i]['Bust'])/(maxBust/2)*255) + ", 0, 0.5)"; 
+                    else tabCell.style.backgroundColor = "rgba(" + Math.round((tableData[i]['Bust'] - 0)/(maxBust/2)*255) + ", 255, 0, 0.5)";
                 }
             }
         } else {
@@ -1043,6 +1220,18 @@ function updateTable() {
                         tabCell = tr.insertCell(-1);
                         tabCell.innerText = tableData[i]['RecTDs']+tableData[i]['RushTDs'];
                     }
+                    tabCell = tr.insertCell(-1);
+                    tabCell.innerText = tableData[i]['Great']
+                    if(tableData[i]['Great'] > maxGreat/2) tabCell.style.backgroundColor = "rgba(" + Math.round((maxGreat - tableData[i]['Great'])/(maxGreat/2)*255) + ", 255, 0, 0.5)"; 
+                    else tabCell.style.backgroundColor = "rgba(255, " + Math.round((tableData[i]['Great'] - 0)/(maxGreat/2)*255) + ", 0, 0.5)";
+                    tabCell = tr.insertCell(-1);
+                    tabCell.innerText = tableData[i]['Good']
+                    if(tableData[i]['Good'] > maxGood/2) tabCell.style.backgroundColor = "rgba(" + Math.round((maxGood - tableData[i]['Good'])/(maxGood/2)*255) + ", 255, 0, 0.5)"; 
+                    else tabCell.style.backgroundColor = "rgba(255, " + Math.round((tableData[i]['Good'] - 0)/(maxGood/2)*255) + ", 0, 0.5)";
+                    tabCell = tr.insertCell(-1);
+                    tabCell.innerText = tableData[i]['Bust']
+                    if(tableData[i]['Bust'] > maxBust/2) tabCell.style.backgroundColor = "rgba(255, " + Math.round((maxBust - tableData[i]['Bust'])/(maxBust/2)*255) + ", 0, 0.5)"; 
+                    else tabCell.style.backgroundColor = "rgba(" + Math.round((tableData[i]['Bust'] - 0)/(maxBust/2)*255) + ", 255, 0, 0.5)";
                 }
             }
         }
@@ -1075,6 +1264,27 @@ function updateTable() {
         th = document.createElement("TH");
         th.innerHTML = "Extra Points";
         tr.appendChild(th);
+        th = document.createElement("TH");
+        th.innerHTML = "Great %";
+        tr.appendChild(th);
+        th = document.createElement("TH");
+        th.innerHTML = "Good %";
+        tr.appendChild(th);
+        th = document.createElement("TH");
+        th.innerHTML = "Bust %";
+        tr.appendChild(th);
+
+        // Find maximimum game ratings
+        maxGreat = 0
+        maxGood = 0
+        maxBust = 0
+        for(var i = 0; i < tableData.length; i++){
+            if(tableData[i]['GamesPlayed'] >= weeksRequired) {
+                if(tableData[i]['Great'] > maxGreat) maxGreat = tableData[i]['Great'];
+                if(tableData[i]['Good'] > maxGood) maxGood = tableData[i]['Good'];
+                if(tableData[i]['Bust'] > maxBust) maxBust = tableData[i]['Bust'];
+            }
+        }
 
         // Fill in table body
         if(average) {
@@ -1097,7 +1307,18 @@ function updateTable() {
                     tabCell.innerText = Math.round((tableData[i]['FGsMissed'])/tableData[i]['GamesPlayed']*100)/100;
                     tabCell = tr.insertCell(-1);
                     tabCell.innerText = Math.round((tableData[i]['ExtraPoints'])/tableData[i]['GamesPlayed']*100)/100;
-                    
+                    tabCell = tr.insertCell(-1);
+                    tabCell.innerText = tableData[i]['Great']
+                    if(tableData[i]['Great'] > maxGreat/2) tabCell.style.backgroundColor = "rgba(" + Math.round((maxGreat - tableData[i]['Great'])/(maxGreat/2)*255) + ", 255, 0, 0.5)"; 
+                    else tabCell.style.backgroundColor = "rgba(255, " + Math.round((tableData[i]['Great'] - 0)/(maxGreat/2)*255) + ", 0, 0.5)";
+                    tabCell = tr.insertCell(-1);
+                    tabCell.innerText = tableData[i]['Good']
+                    if(tableData[i]['Good'] > maxGood/2) tabCell.style.backgroundColor = "rgba(" + Math.round((maxGood - tableData[i]['Good'])/(maxGood/2)*255) + ", 255, 0, 0.5)"; 
+                    else tabCell.style.backgroundColor = "rgba(255, " + Math.round((tableData[i]['Good'] - 0)/(maxGood/2)*255) + ", 0, 0.5)";
+                    tabCell = tr.insertCell(-1);
+                    tabCell.innerText = tableData[i]['Bust']
+                    if(tableData[i]['Bust'] > maxBust/2) tabCell.style.backgroundColor = "rgba(255, " + Math.round((maxBust - tableData[i]['Bust'])/(maxBust/2)*255) + ", 0, 0.5)"; 
+                    else tabCell.style.backgroundColor = "rgba(" + Math.round((tableData[i]['Bust'] - 0)/(maxBust/2)*255) + ", 255, 0, 0.5)";
                 }
             }
         } else {
@@ -1120,6 +1341,18 @@ function updateTable() {
                     tabCell.innerText = tableData[i]['FGsMissed'];
                     tabCell = tr.insertCell(-1);
                     tabCell.innerText = tableData[i]['ExtraPoints'];
+                    tabCell = tr.insertCell(-1);
+                    tabCell.innerText = tableData[i]['Great']
+                    if(tableData[i]['Great'] > maxGreat/2) tabCell.style.backgroundColor = "rgba(" + Math.round((maxGreat - tableData[i]['Great'])/(maxGreat/2)*255) + ", 255, 0, 0.5)"; 
+                    else tabCell.style.backgroundColor = "rgba(255, " + Math.round((tableData[i]['Great'] - 0)/(maxGreat/2)*255) + ", 0, 0.5)";
+                    tabCell = tr.insertCell(-1);
+                    tabCell.innerText = tableData[i]['Good']
+                    if(tableData[i]['Good'] > maxGood/2) tabCell.style.backgroundColor = "rgba(" + Math.round((maxGood - tableData[i]['Good'])/(maxGood/2)*255) + ", 255, 0, 0.5)"; 
+                    else tabCell.style.backgroundColor = "rgba(255, " + Math.round((tableData[i]['Good'] - 0)/(maxGood/2)*255) + ", 0, 0.5)";
+                    tabCell = tr.insertCell(-1);
+                    tabCell.innerText = tableData[i]['Bust']
+                    if(tableData[i]['Bust'] > maxBust/2) tabCell.style.backgroundColor = "rgba(255, " + Math.round((maxBust - tableData[i]['Bust'])/(maxBust/2)*255) + ", 0, 0.5)"; 
+                    else tabCell.style.backgroundColor = "rgba(" + Math.round((tableData[i]['Bust'] - 0)/(maxBust/2)*255) + ", 255, 0, 0.5)";
                 }
             }
         }
@@ -1155,6 +1388,27 @@ function updateTable() {
         th = document.createElement("TH");
         th.innerHTML = "Touchdowns";
         tr.appendChild(th);
+        th = document.createElement("TH");
+        th.innerHTML = "Great %";
+        tr.appendChild(th);
+        th = document.createElement("TH");
+        th.innerHTML = "Good %";
+        tr.appendChild(th);
+        th = document.createElement("TH");
+        th.innerHTML = "Bust %";
+        tr.appendChild(th);
+
+        // Find maximimum game ratings
+        maxGreat = 0
+        maxGood = 0
+        maxBust = 0
+        for(var i = 0; i < tableData.length; i++){
+            if(tableData[i]['GamesPlayed'] >= weeksRequired) {
+                if(tableData[i]['Great'] > maxGreat) maxGreat = tableData[i]['Great'];
+                if(tableData[i]['Good'] > maxGood) maxGood = tableData[i]['Good'];
+                if(tableData[i]['Bust'] > maxBust) maxBust = tableData[i]['Bust'];
+            }
+        }
 
         // Fill in table body
         if(average) {
@@ -1179,6 +1433,18 @@ function updateTable() {
                     tabCell.innerText = Math.round((tableData[i]['Fumbles'])/tableData[i]['GamesPlayed']*100)/100;
                     tabCell = tr.insertCell(-1);
                     tabCell.innerText = Math.round((tableData[i]['TDs'])/tableData[i]['GamesPlayed']*100)/100;
+                    tabCell = tr.insertCell(-1);
+                    tabCell.innerText = tableData[i]['Great']
+                    if(tableData[i]['Great'] > maxGreat/2) tabCell.style.backgroundColor = "rgba(" + Math.round((maxGreat - tableData[i]['Great'])/(maxGreat/2)*255) + ", 255, 0, 0.5)"; 
+                    else tabCell.style.backgroundColor = "rgba(255, " + Math.round((tableData[i]['Great'] - 0)/(maxGreat/2)*255) + ", 0, 0.5)";
+                    tabCell = tr.insertCell(-1);
+                    tabCell.innerText = tableData[i]['Good']
+                    if(tableData[i]['Good'] > maxGood/2) tabCell.style.backgroundColor = "rgba(" + Math.round((maxGood - tableData[i]['Good'])/(maxGood/2)*255) + ", 255, 0, 0.5)"; 
+                    else tabCell.style.backgroundColor = "rgba(255, " + Math.round((tableData[i]['Good'] - 0)/(maxGood/2)*255) + ", 0, 0.5)";
+                    tabCell = tr.insertCell(-1);
+                    tabCell.innerText = tableData[i]['Bust']
+                    if(tableData[i]['Bust'] > maxBust/2) tabCell.style.backgroundColor = "rgba(255, " + Math.round((maxBust - tableData[i]['Bust'])/(maxBust/2)*255) + ", 0, 0.5)"; 
+                    else tabCell.style.backgroundColor = "rgba(" + Math.round((tableData[i]['Bust'] - 0)/(maxBust/2)*255) + ", 255, 0, 0.5)";
                 }
             }
         } else {
@@ -1203,6 +1469,18 @@ function updateTable() {
                     tabCell.innerText = tableData[i]['Fumbles'];
                     tabCell = tr.insertCell(-1);
                     tabCell.innerText = tableData[i]['TDs'];
+                    tabCell = tr.insertCell(-1);
+                    tabCell.innerText = tableData[i]['Great']
+                    if(tableData[i]['Great'] > maxGreat/2) tabCell.style.backgroundColor = "rgba(" + Math.round((maxGreat - tableData[i]['Great'])/(maxGreat/2)*255) + ", 255, 0, 0.5)"; 
+                    else tabCell.style.backgroundColor = "rgba(255, " + Math.round((tableData[i]['Great'] - 0)/(maxGreat/2)*255) + ", 0, 0.5)";
+                    tabCell = tr.insertCell(-1);
+                    tabCell.innerText = tableData[i]['Good']
+                    if(tableData[i]['Good'] > maxGood/2) tabCell.style.backgroundColor = "rgba(" + Math.round((maxGood - tableData[i]['Good'])/(maxGood/2)*255) + ", 255, 0, 0.5)"; 
+                    else tabCell.style.backgroundColor = "rgba(255, " + Math.round((tableData[i]['Good'] - 0)/(maxGood/2)*255) + ", 0, 0.5)";
+                    tabCell = tr.insertCell(-1);
+                    tabCell.innerText = tableData[i]['Bust']
+                    if(tableData[i]['Bust'] > maxBust/2) tabCell.style.backgroundColor = "rgba(255, " + Math.round((maxBust - tableData[i]['Bust'])/(maxBust/2)*255) + ", 0, 0.5)"; 
+                    else tabCell.style.backgroundColor = "rgba(" + Math.round((tableData[i]['Bust'] - 0)/(maxBust/2)*255) + ", 255, 0, 0.5)";
                 }
             }
         }

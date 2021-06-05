@@ -1,0 +1,324 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>To Be Destructed</title>
+		<meta charset="utf-8" />
+        <meta name="author" content = "Christopher Wishon">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+        <script src="../assets/js/sorttable.js"></script>
+        <style>
+            .tableSection thead {
+                display: table;
+                width: calc(100% - 16px); /* assuming scrollbar width as 16px */
+            }
+            .tableSection tbody {
+                overflow: auto;
+                height: 600px;
+                display: block;
+                
+            }
+            .tableSection tr {
+                width: 100%;
+                display: table;
+                table-layout: fixed;
+            }
+
+        </style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+        <div id="wrapper">
+
+            <!-- Main -->
+            <div id="main">
+                <div class="inner" id="mainBody">
+
+                    <!-- Header -->
+                    <header id="header">
+                        <a href="../index.html" class="logo"><strong>To Be Destructed</strong> Fantasy Football League</a>
+                        <ul class="icons">
+                            <li><a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+                            <li><a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+                            <li><a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
+                            <li><a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+                            <li><a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li>
+                        </ul>
+                    </header>
+
+                    <!-- Year/Season Radio Buttons -->
+                    <section id="yearSelect">
+                        <header class="major">
+                            <h2>Season</h2>
+                        </header>
+                        <div class="row gtr-uniform">
+                            <div class="col-2 col-12-xsmall">
+                                <input type="radio" id="season-2020" value=2020 name="season-select" onchange="seasonChange()" checked>
+                                <label for="season-2020">2020</label>
+                            </div>
+                            <div class="col-2 col-12-xsmall">
+                                <input type="radio" id="season-2019" value=2019 name="season-select" onchange="seasonChange()">
+                                <label for="season-2019">2019</label>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- $ Per Position -->
+                    <section id="pointsByPosition">
+                        <header class="major">
+                            <h2>Amount Spent By Position By Team</h2>
+                        </header>
+                        <div class="row">
+                            <div class="col-8 col-12-medium">
+                                <canvas id="pointsPerPositionBarChart" width="700" height="400"></canvas>
+                                <br>
+                            </div>
+                            <div class="col-4 col-6-medium col-10-small">
+                                <h4 id="pointsPerPositionPieChartHeader">XX Breakdown</h4>
+                                <canvas id="pointsPerPositionPieChart" width="350" height="300"></canvas>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Players Selected By NFL Team -->
+                    <section id="playersByNFLTeam">
+                        <header class="major">
+                            <h2>Total Spent on NFL Team (Offense Only)</h2>
+                        </header>
+                        <div class="row">
+                            <div class="col-8 col-12-medium">
+                                <canvas id="playersByNFLTeamChart" width="700" height="350"></canvas>
+                            </div>
+                            <div class="col-4 col-12-medium">
+                                <h4 id="playersByNFLTeamTableHeader">XXX Players Selected</h4>
+                                
+                                <div class="table-wrapper">
+                                    <font size="2">
+                                    <table class="alt center">
+                                        <thead>
+                                            <tr>
+                                                <th>Player</th>
+                                                <th>Position</th>
+                                                <th>Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="playersByNFLTeamTable">
+                                        </tbody>
+                                    </table>
+                                    </font>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Draft order Charts -->
+                    <section id="draftOrder">
+                        <header class="major">
+                            <h2>NFL Player Draft Order</h2>
+                        </header>
+                        <div class="row">
+                            <div class="col-8 col-12-medium">
+                                <canvas id="draftOrderChart" width="700" height="450"></canvas>
+                            </div>
+                            <div class="col-4 col-12-medium">
+                                <h4 id="draftOrderTableHeader">XXX Players Selected</h4>
+                                <div class="table-wrapper">
+                                    <font size="2">
+                                    <table class="alt center">
+                                        <thead>
+                                            <tr>
+                                                <th>Pick</th>
+                                                <th>Player</th>
+                                                <th>Amount</th>
+                                                <th>Won</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="draftOrderTable">
+                                        </tbody>
+                                    </table>
+                                    </font>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Spending Trend -->
+                    <section id="spendingTrend">
+                        <header class="major">
+                            <h2>Player Spending By Pick</h2>
+                        </header>
+                        <div class="row">
+                            <div class="col-8 col-12-medium">
+                                <canvas id="playerSpendingChart" width="700" height="400"></canvas>
+                            </div>
+                            <div class="col-4 col-12-medium">
+                                <h4 id="playerSpendingTableHeader">XXX Players Selected</h4>
+                                <div class="table-wrapper">
+                                    <font size="2">
+                                    <table class="alt center">
+                                        <thead>
+                                            <tr>
+                                                <th>Pick</th>
+                                                <th>Player</th>
+                                                <th>Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="playerSpendingTable">
+                                        </tbody>
+                                    </table>
+                                    </font>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Spent vs. Expected By Position -->
+                    <section id="spendVsExpected">
+                        <header class="major">
+                            <h2>Amount Spent vs. Expected By Position</h2>
+                        </header>
+                        <div class="row">
+                            <div class="col-4 col-12-medium">
+                                <select name="spendVsExpectedSelect" id="spendVsExpectedSelect" onchange="changePosition()">
+                                    <option value="QB" selected>Quarterback</option>
+                                    <option value="RB">Running Back</option>
+                                    <option value="WR">Wide Receiver</option>
+                                    <option value="TE">Tight Ends</option>
+                                </select>
+                            </div>
+                            <div class="col-4 col-6-medium col-8-small">
+                                <canvas id="spendVsExpectedCanvas" width=100% height=100%></canvas>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Spent vs. Expected By Team -->
+                    <section id="spendVsExpectedFantasyTeam">
+                        <header class="major">
+                            <h2>Amount Spent vs. Expected By Fantasy Player</h2>
+                        </header>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="table-wrapper">
+                                    <table class="alt center">
+                                        <thead>
+                                            <tr>
+                                                <th>Rank</th>
+                                                <th>Owner</th>
+                                                <th>Spent</th>
+                                                <th>Beersheets Expected</th>
+                                                <th>Difference</th>
+                                                <th>Greatest Steal</th>
+                                                <th>Biggest Overpay</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="spendVsExpectedFantasyTeamTable">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Favorite NFL Team By Owner -->
+                    <section id="nflTeamByOwner">
+                        <header class="major">
+                            <h2>Favorite NFL Team By Owner</h2>
+                        </header>
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="table-wrapper">
+                                    <table class="alt center">
+                                        <thead>
+                                            <tr>
+                                                <th>Owner</th>
+                                                <th>Fav. NFL Team(s)</th>
+                                                <th>Quantity</th>
+                                                <th>Players (from one team in case of ties)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="nflTeamByOwnerTable">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Draft Order Table -->
+                    <section id="draftHistory">
+                        <header class="major">
+                            <h2>Full Draft Order/Data</h2>
+                        </header>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="table-wrapper">
+                                    <table class="tableSection alt center">
+                                        <thead>
+                                            <tr>
+                                                <th width=10%>Pick</th>
+                                                <th width=30%>Name</th>
+                                                <th width=10%>Position</th>
+                                                <th width=20%>Winner</th>
+                                                <th width=10%>Amount</th>
+                                                <th width=20%>Beersheets Min-Exp-Max</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="draftHistoryTable">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div id="sidebar">
+                <div class="inner">
+
+                    <!-- Menu -->
+                    <nav id="menu">
+                        <header class="major">
+                            <h2>Menu</h2>
+                        </header>
+                        <ul>
+                            <li><a href="../index.html">Homepage</a></li>
+                            <li><a href="seasonStats.html">Season Data</a></li>
+                            <li><a href="weeklyStats.html">Weekly Results</a></li>
+                            <li><a href="playoffs.html">Playoff Results</a></li>
+                            <li><a href="#">Fantasy Draft</a></li>
+                            <li><a href="nflTeamData.html">NFL Team Data</a></li>
+                            <li><a href="nflPlayerData.html">NFL Player Data</a></li>
+                            <li><a href="superlatives.html">Season Superlatives</a></li>
+                        </ul>
+                    </nav>
+
+                </div>
+            </div>
+
+        </div>
+        
+        <!-- Firebase Scripts -->
+        <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-database.js"></script>
+
+		<!-- Scripts -->
+        <script src="../assets/js/jquery.min.js"></script>
+        <script src="../assets/js/browser.min.js"></script>
+        <script src="../assets/js/breakpoints.min.js"></script>
+        <script src="../assets/js/util.js"></script>
+        <script src="../assets/js/main.js"></script>
+        <script src="../assets/js/draft.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+        <script type = "text/javascript">loadDraftStats()</script>
+	</body>
+</html>
