@@ -13,6 +13,11 @@ firebase.initializeApp(config);
 var database = firebase.database();
 const dbRef = firebase.database().ref();
 
+
+const analytics = firebase.analytics();
+analytics.setCurrentScreen(window.location.pathname) // sets `screen_name` parameter
+analytics.logEvent('screen_view') // log event with `screen_name` parameter attached
+
 // Function which fills in season stat tables
 function loadIndex() {
 
