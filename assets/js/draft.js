@@ -95,9 +95,6 @@ function loadDraftStats() {
 }
 
 function updatePage() {
-    console.log()
-    console.log(pageYear)
-    console.log(draftData)
 
 
 
@@ -212,7 +209,7 @@ function updatePage() {
         }
 
         var found = false;
-        for(var j = 0; j < ownerCount; j++){
+        for(var j = 0; j < nominatorNames.length; j++){
             if(nominatorNames[j] == draftData[i].nominator){
                 found = true;
                 break;
@@ -302,8 +299,6 @@ function updatePage() {
             return b[1] - a[1]
         });
     }
-
-    console.log(tableData)
 
     // Amount spent by position charts
     var chartData = [];
@@ -860,8 +855,6 @@ function updatePage() {
             hitRadius: 5
         })
     }
-
-    console.log(datasetsData)
  
     playerSpendingChart = new Chart(graph, {
         type: 'scatter',
