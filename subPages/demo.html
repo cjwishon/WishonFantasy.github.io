@@ -1,0 +1,148 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>To Be Destructed</title>
+		<meta charset="utf-8" />
+        <meta name="author" content = "Christopher Wishon">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+        <script src="../assets/js/sorttable.js"></script>
+        <style>
+            .tableSection thead {
+                display: table;
+                width: calc(100% - 16px); /* assuming scrollbar width as 16px */
+            }
+            .tableSection tbody {
+                overflow: auto;
+                height: 400px;
+                display: block;
+                
+            }
+            .tableSection tr {
+                width: 100%;
+                display: table;
+                table-layout: fixed;
+            }
+
+        </style>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+        <div id="wrapper">
+
+            <!-- Main -->
+            <div id="main">
+                <div class="inner">
+
+                    <!-- Header -->
+                    <header id="header">
+                        <a href="../index.html" class="logo"><strong>To Be Destructed</strong> Fantasy Football League</a>
+                        <ul class="icons">
+                            <li><a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+                            <li><a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+                            <li><a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
+                            <li><a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+                            <li><a href="https://www.youtube.com/watch?v=oHg5SJYRHA0" class="icon brands fa-medium-m"><span class="label">Medium</span></a></li>
+                        </ul>
+                    </header>
+
+                    <!-- Data select section -->
+                    <section id="dataSelect">
+
+                        <!-- Section Header -->
+                        <header class="major">
+                            <h2>League/Year Select</h2>
+                        </header>
+
+                        <!-- Data Control Buttons -->
+                        <div class="row gtr-uniform">
+                            <div class="col-6">
+                                <b>League ID:</b>
+                                <input type="text" name="league_id" id="league_id" value="1774020" placeholder="1774020" />
+                            </div>
+                            <div class="col-6">
+                                <b>Year:</b>
+                                <input type="text" name="year" id="year" value="2020" placeholder="2020" />
+                            </div>                            
+                        </div>
+                        <br>
+                        <a href="#" class="button primary" onclick="queryLeague()">Query</a>
+                        <br>
+                        <br>
+                        <!-- Data Table -->
+                        <div class="row">
+                            <div class="table-wrapper">
+                                <table class="alt center" id="tableEntire">
+                                    <thead id="tableHead">
+                                        <tr>
+                                            <th>Position</th>
+                                            <th>Team</th>
+                                            <th>Name</th>
+                                            <th>Wins</th>
+                                            <th>Points For</th>
+                                            <th>Points Against</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tableBody">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </section>
+                    
+                    <!-- Main section -->
+                    <section id="tableSection">
+                
+                    </section>
+
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div id="sidebar">
+                <div class="inner">
+
+                    <!-- Menu -->
+                    <nav id="menu">
+                        <header class="major">
+                            <h2>Menu</h2>
+                        </header>
+                        <ul>
+                            <li><a href="../index.html">Homepage</a></li>
+                            <li><a href="seasonStats.html">Season Data</a></li>
+                            <li><a href="weeklyStats.html">Weekly Results</a></li>
+                            <li><a href="playoffs.html">Playoff Results</a></li>
+                            <li><a href="draft.html">Fantasy Draft</a></li>
+                            <li><a href="nflTeamData.html">NFL Team Data</a></li>
+                            <li><a href="#">NFL Player Data</a></li>
+                            <li><a href="superlatives.html">Season Superlatives</a></li>
+                        </ul>
+                    </nav>
+
+                </div>
+            </div>
+
+        </div>
+        
+        <!-- Firebase Scripts -->
+        <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-analytics.js"></script>
+
+		<!-- Scripts -->
+        <script src="../assets/js/jquery.min.js"></script>
+        <script src="../assets/js/browser.min.js"></script>
+        <script src="../assets/js/breakpoints.min.js"></script>
+        <script src="../assets/js/util.js"></script>
+        <script src="../assets/js/main.js"></script>
+        <script src="../assets/js/demo.js"></script>
+
+	</body>
+</html>
