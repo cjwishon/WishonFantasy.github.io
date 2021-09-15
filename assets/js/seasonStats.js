@@ -478,8 +478,9 @@ function updatePage() {
             "playoffsPossible":seasonDataYear.standings[i].playoffSpotPossible,
         })
     }
+
     playoffOddsSortArray.sort(function(a,b) {
-        return a.rank - b.rank
+        return b['playoffOdds'] - a['playoffOdds']
     });
 
     // Get the table body and clear the rows
@@ -520,32 +521,34 @@ function updatePage() {
     topScoresArray = []
     closestMatchupArray = []
     for(var i = 0; i < seasonDataYear.games.length; i++) {
-        topScoresArray.push({
-            "owner":seasonDataYear.games[i].awayTeam, 
-            "score":seasonDataYear.games[i].awayPoints,
-            "week":seasonDataYear.games[i].week
-        })
-        topScoresArray.push({
-            "owner":seasonDataYear.games[i].homeTeam, 
-            "score":seasonDataYear.games[i].homePoints,
-            "week":seasonDataYear.games[i].week
-        })
-        if(seasonDataYear.games[i].awayPoints > seasonDataYear.games[i].homePoints) {
-            closestMatchupArray.push({
-                "winner":seasonDataYear.games[i].awayTeam, 
-                "loser":seasonDataYear.games[i].homeTeam,
-                "score":seasonDataYear.games[i].awayPoints.toString() + " vs. " + seasonDataYear.games[i].homePoints.toString(),
-                "diff":Math.round((seasonDataYear.games[i].awayPoints - seasonDataYear.games[i].homePoints)*100)/100,
+        if(seasonDataYear.games[i].awayPoints + seasonDataYear.games[i].homePoints > 0.1){
+            topScoresArray.push({
+                "owner":seasonDataYear.games[i].awayTeam, 
+                "score":seasonDataYear.games[i].awayPoints,
                 "week":seasonDataYear.games[i].week
             })
-        } else {
-            closestMatchupArray.push({
-                "winner":seasonDataYear.games[i].homeTeam, 
-                "loser":seasonDataYear.games[i].awayTeam,
-                "score":seasonDataYear.games[i].homePoints.toString() + " vs. " + seasonDataYear.games[i].awayPoints.toString(),
-                "diff":Math.round((seasonDataYear.games[i].homePoints - seasonDataYear.games[i].awayPoints)*100)/100,
+            topScoresArray.push({
+                "owner":seasonDataYear.games[i].homeTeam, 
+                "score":seasonDataYear.games[i].homePoints,
                 "week":seasonDataYear.games[i].week
             })
+            if(seasonDataYear.games[i].awayPoints > seasonDataYear.games[i].homePoints) {
+                closestMatchupArray.push({
+                    "winner":seasonDataYear.games[i].awayTeam, 
+                    "loser":seasonDataYear.games[i].homeTeam,
+                    "score":seasonDataYear.games[i].awayPoints.toString() + " vs. " + seasonDataYear.games[i].homePoints.toString(),
+                    "diff":Math.round((seasonDataYear.games[i].awayPoints - seasonDataYear.games[i].homePoints)*100)/100,
+                    "week":seasonDataYear.games[i].week
+                })
+            } else {
+                closestMatchupArray.push({
+                    "winner":seasonDataYear.games[i].homeTeam, 
+                    "loser":seasonDataYear.games[i].awayTeam,
+                    "score":seasonDataYear.games[i].homePoints.toString() + " vs. " + seasonDataYear.games[i].awayPoints.toString(),
+                    "diff":Math.round((seasonDataYear.games[i].homePoints - seasonDataYear.games[i].awayPoints)*100)/100,
+                    "week":seasonDataYear.games[i].week
+                })
+            }
         }
     }
 
@@ -1246,7 +1249,7 @@ function loadScheduleTable(ID) {
         tabCell.style.paddingBottom = "0.25em";
         tabCell = tr.insertCell(-1);
         if (score + oppScore < 0.000000001) {
-            tabCells.innerHTML = "";  
+            tabCell.innerHTML = "";  
         } else if (score < oppScore) {
             tabCell.innerHTML = "Loss";  
         } else {

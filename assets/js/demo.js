@@ -27,6 +27,8 @@ function queryLeague() {
 
 function createTable(data) {
 
+    console.log(data);
+
     // Reset table if applicable
     var tableBody = document.getElementById("tableBody");
     while(tableBody != null && tableBody.hasChildNodes()) {
@@ -49,7 +51,7 @@ function createTable(data) {
         for(var j in tableData){
 
             if(tableData[j]['ESPN_ID'] == data['teams'][i]['primaryOwner']) {
-                tableData[j]['Position'] = data['teams'][i]['rankCalculatedFinal'];
+                tableData[j]['Position'] = data['teams'][i]['playoffSeed'];
                 tableData[j]['Team'] = data['teams'][i]['location'] + " " + data['teams'][i]['nickname'];
                 tableData[j]['Wins'] = data['teams'][i]['record']['overall']['wins'];
                 tableData[j]['Points_For'] = Math.round(data['teams'][i]['points'] * 100)/100;

@@ -592,89 +592,101 @@ function getPlayersOnTeam(team) {
         for(var i = 0; i < team.position.BENCH.length; i++) {
 
             var foundEntry = false;
-            for(var j = 0; j < weekData.players.qb.length; j++) {
-                if(weekData.players.qb[j].name == team.position.BENCH[i].name && Math.abs(weekData.players.qb[j].score - team.position.BENCH[i].totalPoints) < 0.000001) {
-                    players.push({
-                        "name": team.position.BENCH[i].name,
-                        "position": "QB",
-                        "points": team.position.BENCH[i].totalPoints,
-                        "status": "Inactive"
-                    })
-                    foundEntry = true;
-                    break;
+            if('qb' in weekData.players){
+                for(var j = 0; j < weekData.players.qb.length; j++) {
+                    if(weekData.players.qb[j].name == team.position.BENCH[i].name && Math.abs(weekData.players.qb[j].score - team.position.BENCH[i].totalPoints) < 0.000001) {
+                        players.push({
+                            "name": team.position.BENCH[i].name,
+                            "position": "QB",
+                            "points": team.position.BENCH[i].totalPoints,
+                            "status": "Inactive"
+                        })
+                        foundEntry = true;
+                        break;
+                    }
                 }
+                if(foundEntry) continue;
             }
-            if(foundEntry) continue;
 
-            for(var j = 0; j < weekData.players.rb.length; j++) {
-                if(weekData.players.rb[j].name == team.position.BENCH[i].name && Math.abs(weekData.players.rb[j].score - team.position.BENCH[i].totalPoints) < 0.000001) {
-                    players.push({
-                        "name": team.position.BENCH[i].name,
-                        "position": "RB",
-                        "points": team.position.BENCH[i].totalPoints,
-                        "status": "Inactive"
-                    })
-                    foundEntry = true;
-                    break;
+            if('rb' in weekData.players){
+                for(var j = 0; j < weekData.players.rb.length; j++) {
+                    if(weekData.players.rb[j].name == team.position.BENCH[i].name && Math.abs(weekData.players.rb[j].score - team.position.BENCH[i].totalPoints) < 0.000001) {
+                        players.push({
+                            "name": team.position.BENCH[i].name,
+                            "position": "RB",
+                            "points": team.position.BENCH[i].totalPoints,
+                            "status": "Inactive"
+                        })
+                        foundEntry = true;
+                        break;
+                    }
                 }
+                if(foundEntry) continue;
             }
-            if(foundEntry) continue;
 
-            for(var j = 0; j < weekData.players.wr.length; j++) {
-                if(weekData.players.wr[j].name == team.position.BENCH[i].name && Math.abs(weekData.players.wr[j].score - team.position.BENCH[i].totalPoints) < 0.000001) {
-                    players.push({
-                        "name": team.position.BENCH[i].name,
-                        "position": "WR",
-                        "points": team.position.BENCH[i].totalPoints,
-                        "status": "Inactive"
-                    })
-                    foundEntry = true;
-                    break;
+            if('wr' in weekData.players){
+                for(var j = 0; j < weekData.players.wr.length; j++) {
+                    if(weekData.players.wr[j].name == team.position.BENCH[i].name && Math.abs(weekData.players.wr[j].score - team.position.BENCH[i].totalPoints) < 0.000001) {
+                        players.push({
+                            "name": team.position.BENCH[i].name,
+                            "position": "WR",
+                            "points": team.position.BENCH[i].totalPoints,
+                            "status": "Inactive"
+                        })
+                        foundEntry = true;
+                        break;
+                    }
                 }
+                if(foundEntry) continue;
             }
-            if(foundEntry) continue;
             
-            for(var j = 0; j < weekData.players.te.length; j++) {
-                if(weekData.players.te[j].name == team.position.BENCH[i].name && Math.abs(weekData.players.te[j].score - team.position.BENCH[i].totalPoints) < 0.000001) {
-                    players.push({
-                        "name": team.position.BENCH[i].name,
-                        "position": "TE",
-                        "points": team.position.BENCH[i].totalPoints,
-                        "status": "Inactive"
-                    })
-                    foundEntry = true;
-                    break;
+            if('te' in weekData.players){
+                for(var j = 0; j < weekData.players.te.length; j++) {
+                    if(weekData.players.te[j].name == team.position.BENCH[i].name && Math.abs(weekData.players.te[j].score - team.position.BENCH[i].totalPoints) < 0.000001) {
+                        players.push({
+                            "name": team.position.BENCH[i].name,
+                            "position": "TE",
+                            "points": team.position.BENCH[i].totalPoints,
+                            "status": "Inactive"
+                        })
+                        foundEntry = true;
+                        break;
+                    }
                 }
+                if(foundEntry) continue;
             }
-            if(foundEntry) continue;
 
-            for(var j = 0; j < weekData.players.k.length; j++) {
-                if(weekData.players.k[j].name == team.position.BENCH[i].name && Math.abs(weekData.players.k[j].score - team.position.BENCH[i].totalPoints) < 0.000001) {
-                    players.push({
-                        "name": team.position.BENCH[i].name,
-                        "position": "K",
-                        "points": team.position.BENCH[i].totalPoints,
-                        "status": "Inactive"
-                    })
-                    foundEntry = true;
-                    break;
+            if('k' in weekData.players){
+                for(var j = 0; j < weekData.players.k.length; j++) {
+                    if(weekData.players.k[j].name == team.position.BENCH[i].name && Math.abs(weekData.players.k[j].score - team.position.BENCH[i].totalPoints) < 0.000001) {
+                        players.push({
+                            "name": team.position.BENCH[i].name,
+                            "position": "K",
+                            "points": team.position.BENCH[i].totalPoints,
+                            "status": "Inactive"
+                        })
+                        foundEntry = true;
+                        break;
+                    }
                 }
+                if(foundEntry) continue;
             }
-            if(foundEntry) continue;
 
-            for(var j = 0; j < weekData.players.dst.length; j++) {
-                if(weekData.players.dst[j].name == team.position.BENCH[i].name && Math.abs(weekData.players.dst[j].score - team.position.BENCH[i].totalPoints) < 0.000001) {
-                    players.push({
-                        "name": team.position.BENCH[i].name,
-                        "position": "DST",
-                        "points": team.position.BENCH[i].totalPoints,
-                        "status": "Inactive"
-                    })
-                    foundEntry = true;
-                    break;
+            if('dst' in weekData.players){
+                for(var j = 0; j < weekData.players.dst.length; j++) {
+                    if(weekData.players.dst[j].name == team.position.BENCH[i].name && Math.abs(weekData.players.dst[j].score - team.position.BENCH[i].totalPoints) < 0.000001) {
+                        players.push({
+                            "name": team.position.BENCH[i].name,
+                            "position": "DST",
+                            "points": team.position.BENCH[i].totalPoints,
+                            "status": "Inactive"
+                        })
+                        foundEntry = true;
+                        break;
+                    }
                 }
+                if(foundEntry) continue;
             }
-            if(foundEntry) continue;
         }
     }
 
@@ -683,89 +695,101 @@ function getPlayersOnTeam(team) {
         for(var i = 0; i < team.position.IR.length; i++) {
 
             var foundEntry = false;
-            for(var j = 0; j < weekData.players.qb.length; j++) {
-                if(weekData.players.qb[j].name == team.position.IR[i].name && Math.abs(weekData.players.qb[j].score - team.position.IR[i].totalPoints) < 0.000001) {
-                    players.push({
-                        "name": team.position.IR[i].name,
-                        "position": "QB",
-                        "points": team.position.IR[i].totalPoints,
-                        "status": "Inactive"
-                    })
-                    foundEntry = true;
-                    break;
+            if('qb' in weekData.players){
+                for(var j = 0; j < weekData.players.qb.length; j++) {
+                    if(weekData.players.qb[j].name == team.position.IR[i].name && Math.abs(weekData.players.qb[j].score - team.position.IR[i].totalPoints) < 0.000001) {
+                        players.push({
+                            "name": team.position.IR[i].name,
+                            "position": "QB",
+                            "points": team.position.IR[i].totalPoints,
+                            "status": "Inactive"
+                        })
+                        foundEntry = true;
+                        break;
+                    }
                 }
+                if(foundEntry) continue;
             }
-            if(foundEntry) continue;
 
-            for(var j = 0; j < weekData.players.rb.length; j++) {
-                if(weekData.players.rb[j].name == team.position.IR[i].name && Math.abs(weekData.players.rb[j].score - team.position.IR[i].totalPoints) < 0.000001) {
-                    players.push({
-                        "name": team.position.IR[i].name,
-                        "position": "RB",
-                        "points": team.position.IR[i].totalPoints,
-                        "status": "Inactive"
-                    })
-                    foundEntry = true;
-                    break;
+            if('rb' in weekData.players){
+                for(var j = 0; j < weekData.players.rb.length; j++) {
+                    if(weekData.players.rb[j].name == team.position.IR[i].name && Math.abs(weekData.players.rb[j].score - team.position.IR[i].totalPoints) < 0.000001) {
+                        players.push({
+                            "name": team.position.IR[i].name,
+                            "position": "RB",
+                            "points": team.position.IR[i].totalPoints,
+                            "status": "Inactive"
+                        })
+                        foundEntry = true;
+                        break;
+                    }
                 }
+                if(foundEntry) continue;
             }
-            if(foundEntry) continue;
 
-            for(var j = 0; j < weekData.players.wr.length; j++) {
-                if(weekData.players.wr[j].name == team.position.IR[i].name && Math.abs(weekData.players.wr[j].score - team.position.IR[i].totalPoints) < 0.000001) {
-                    players.push({
-                        "name": team.position.IR[i].name,
-                        "position": "WR",
-                        "points": team.position.IR[i].totalPoints,
-                        "status": "Inactive"
-                    })
-                    foundEntry = true;
-                    break;
+            if('wr' in weekData.players){
+                for(var j = 0; j < weekData.players.wr.length; j++) {
+                    if(weekData.players.wr[j].name == team.position.IR[i].name && Math.abs(weekData.players.wr[j].score - team.position.IR[i].totalPoints) < 0.000001) {
+                        players.push({
+                            "name": team.position.IR[i].name,
+                            "position": "WR",
+                            "points": team.position.IR[i].totalPoints,
+                            "status": "Inactive"
+                        })
+                        foundEntry = true;
+                        break;
+                    }
                 }
+                if(foundEntry) continue;
             }
-            if(foundEntry) continue;
             
-            for(var j = 0; j < weekData.players.te.length; j++) {
-                if(weekData.players.te[j].name == team.position.IR[i].name && Math.abs(weekData.players.te[j].score - team.position.IR[i].totalPoints) < 0.000001) {
-                    players.push({
-                        "name": team.position.IR[i].name,
-                        "position": "TE",
-                        "points": team.position.IR[i].totalPoints,
-                        "status": "Inactive"
-                    })
-                    foundEntry = true;
-                    break;
+            if('te' in weekData.players){
+                for(var j = 0; j < weekData.players.te.length; j++) {
+                    if(weekData.players.te[j].name == team.position.IR[i].name && Math.abs(weekData.players.te[j].score - team.position.IR[i].totalPoints) < 0.000001) {
+                        players.push({
+                            "name": team.position.IR[i].name,
+                            "position": "TE",
+                            "points": team.position.IR[i].totalPoints,
+                            "status": "Inactive"
+                        })
+                        foundEntry = true;
+                        break;
+                    }
                 }
+                if(foundEntry) continue;
             }
-            if(foundEntry) continue;
 
-            for(var j = 0; j < weekData.players.k.length; j++) {
-                if(weekData.players.k[j].name == team.position.IR[i].name && Math.abs(weekData.players.k[j].score - team.position.IR[i].totalPoints) < 0.000001) {
-                    players.push({
-                        "name": team.position.IR[i].name,
-                        "position": "K",
-                        "points": team.position.IR[i].totalPoints,
-                        "status": "Inactive"
-                    })
-                    foundEntry = true;
-                    break;
+            if('k' in weekData.players){
+                for(var j = 0; j < weekData.players.k.length; j++) {
+                    if(weekData.players.k[j].name == team.position.IR[i].name && Math.abs(weekData.players.k[j].score - team.position.IR[i].totalPoints) < 0.000001) {
+                        players.push({
+                            "name": team.position.IR[i].name,
+                            "position": "K",
+                            "points": team.position.IR[i].totalPoints,
+                            "status": "Inactive"
+                        })
+                        foundEntry = true;
+                        break;
+                    }
                 }
+                if(foundEntry) continue;
             }
-            if(foundEntry) continue;
 
-            for(var j = 0; j < weekData.players.dst.length; j++) {
-                if(weekData.players.dst[j].name == team.position.IR[i].name && Math.abs(weekData.players.dst[j].score - team.position.IR[i].totalPoints) < 0.000001) {
-                    players.push({
-                        "name": team.position.IR[i].name,
-                        "position": "DST",
-                        "points": team.position.IR[i].totalPoints,
-                        "status": "Inactive"
-                    })
-                    foundEntry = true;
-                    break;
+            if('dst' in weekData.players){
+                for(var j = 0; j < weekData.players.dst.length; j++) {
+                    if(weekData.players.dst[j].name == team.position.IR[i].name && Math.abs(weekData.players.dst[j].score - team.position.IR[i].totalPoints) < 0.000001) {
+                        players.push({
+                            "name": team.position.IR[i].name,
+                            "position": "DST",
+                            "points": team.position.IR[i].totalPoints,
+                            "status": "Inactive"
+                        })
+                        foundEntry = true;
+                        break;
+                    }
                 }
+                if(foundEntry) continue;
             }
-            if(foundEntry) continue;
         }
     }
 
@@ -1173,8 +1197,6 @@ function getMatchupChartData() {
     matchupChartData.sort(function(a,b) {
         return a.absPointDiff - b.absPointDiff
     });
-
-    console.log(matchupChartData);
 
 }
 
