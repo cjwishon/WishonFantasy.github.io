@@ -7,6 +7,12 @@ var year;
 * Initialization function on page load
 *
 */
+
+swid = "{8DBDF1C9-39CD-4B37-96D6-1E1734FE2516}"
+espn_s2 = "AEAFEMDauUqsBoSuLLT7ASIEkjJoDDXK26P%2FGP4j%2FN%2FtiQMCZo9386%2FDhP8XOwdKMrAb8WISRLeIXu3dxcurTViteu1Lnkq7l5T0VrhX%2FTJjrbFveUUn57YkXharIGL%2FZrE6UtY782duNQ7ib6rf0qiE8spPzU9xDS2NgIWIk0bpbhn1hB%2FFfLOiGgUhuOiuwpqJMUdMtjtXr%2FF4RgxGAgeq8sSoksxwWRNtW3vSe3bnoY0QxdFcnuAdsa%2BclkObhKwc30pjX40tpWtMV8S21Y4y"
+
+document.cookie = "swid=" + swid + ";espn_s2=" + espn_s2 + ";";
+
 function queryLeague() {
 
     // Get data from pulldowns
@@ -14,9 +20,18 @@ function queryLeague() {
     leagueID = leagueIDElement.value;
     var yearElement = document.getElementById("year");
     year = yearElement.value;
+
     
+    console.log(document.cookie);
+
+
+    
+    //cookies={"swid": espnSWID, "espn_s2": espnS2}
+
     // Get ESPN Data
-    var espnData = fetch('https://fantasy.espn.com/apis/v3/games/ffl/seasons/' + year + '/segments/0/leagues/' + leagueID + '?view=mTeam').then(response => response.json());
+    var espnData = fetch('https://fantasy.espn.com/apis/v3/games/ffl/seasons/' + year + '/segments/0/leagues/' + leagueID + '?view=mTeam', {
+        credentials: 'include'
+      }).then(response => response.json());
     espnData = MakeQuerablePromise(espnData)
     
     espnData.then(data => {
