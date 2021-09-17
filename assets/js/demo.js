@@ -33,7 +33,7 @@ function queryLeague() {
 
     // Get ESPN Data
     var espnData = fetch('https://fantasy.espn.com/apis/v3/games/ffl/seasons/' + year + '/segments/0/leagues/' + leagueID + '?view=mTeam', {
-        credentials: 'include'
+        credentials: 'same-origin'
       }).then(response => response.json());
     espnData = MakeQuerablePromise(espnData)
     
