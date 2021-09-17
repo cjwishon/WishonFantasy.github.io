@@ -21,7 +21,7 @@ function queryLeague() {
     var yearElement = document.getElementById("year");
     year = yearElement.value;
 
-    console.log("HELLO 1");
+    console.log("HELLO 2");
     document.cookie = "swid=" + swid;
     console.log(document.cookie);
     document.cookie = "espn_s2=" + espn_s2;
