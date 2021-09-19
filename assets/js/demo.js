@@ -2,44 +2,66 @@
 var leagueID;
 var year;
 
-/* FUNCTION: loadNFLPlayerData
-*
-* Initialization function on page load
-*
-*/
+SWID = "{8DBDF1C9-39CD-4B37-96D6-1E1734FE2516}"
+espnS2 = "AEAFEMDauUqsBoSuLLT7ASIEkjJoDDXK26P%2FGP4j%2FN%2FtiQMCZo9386%2FDhP8XOwdKMrAb8WISRLeIXu3dxcurTViteu1Lnkq7l5T0VrhX%2FTJjrbFveUUn57YkXharIGL%2FZrE6UtY782duNQ7ib6rf0qiE8spPzU9xDS2NgIWIk0bpbhn1hB%2FFfLOiGgUhuOiuwpqJMUdMtjtXr%2FF4RgxGAgeq8sSoksxwWRNtW3vSe3bnoY0QxdFcnuAdsa%2BclkObhKwc30pjX40tpWtMV8S21Y4y"
 
-swid = "{8DBDF1C9-39CD-4B37-96D6-1E1734FE2516}"
-espn_s2 = "AEAFEMDauUqsBoSuLLT7ASIEkjJoDDXK26P%2FGP4j%2FN%2FtiQMCZo9386%2FDhP8XOwdKMrAb8WISRLeIXu3dxcurTViteu1Lnkq7l5T0VrhX%2FTJjrbFveUUn57YkXharIGL%2FZrE6UtY782duNQ7ib6rf0qiE8spPzU9xDS2NgIWIk0bpbhn1hB%2FFfLOiGgUhuOiuwpqJMUdMtjtXr%2FF4RgxGAgeq8sSoksxwWRNtW3vSe3bnoY0QxdFcnuAdsa%2BclkObhKwc30pjX40tpWtMV8S21Y4y"
+function pageLoad() {
+    
+    
+    var btn = document.getElementById("queryButton");
+    btn.addEventListener("click", function() {
+        queryLeague()
+    }, false);
 
-
+}
 
 function queryLeague() {
 
-    // Get data from pulldowns
     var leagueIDElement = document.getElementById("league_id");
-    leagueID = leagueIDElement.value;
+    //leagueId = leagueIDElement.value;
+    leagueId = 1774020;
     var yearElement = document.getElementById("year");
     year = yearElement.value;
 
+    const client = new Client({ espnS2, SWID, leagueId});
+
+    console.log(client);
+
+    testData = client.getLeagueInfo({ year });
+
+    testData.then(data => {
+        console.log(data);
+    });
+
+
+
+    // Get data from pulldowns
+    
+    
+    /*
     console.log("HELLO 3");
-    document.cookie = "swid=" + swid;
-    console.log(document.cookie);
-    document.cookie = "espn_s2=" + espn_s2;
-    console.log(document.cookie);
+    //document.cookie = "SWID=" + swid + ";domain=fantasy.espn.com";
+    //console.log(document.cookie);
+    document.cookie = "espn_s2=" + espn_s2 + ";SWID=" + swid + ";domain=https://fantasy.espn.com";
+    console.log(document.cookie);*/
 
 
     
     //cookies={"swid": espnSWID, "espn_s2": espnS2}
+    //
 
     // Get ESPN Data
-    var espnData = fetch('https://fantasy.espn.com/apis/v3/games/ffl/seasons/' + year + '/segments/0/leagues/' + leagueID + '?view=mTeam', {
-        credentials: 'same-origin'
-      }).then(response => response.json());
+    //var espnData = fetch('https://fantasy.espn.com/apis/v3/games/ffl/seasons/' + year + '/segments/0/leagues/' + leagueID + '?view=mTeam', {
+    //    credentials: 'include'
+        /*headers: {
+            'Cookie': 'espn_s2=' + espn_s2 + '; SWID=' + swid + ';'
+        }*/
+    /*  }).then(response => response.json());
     espnData = MakeQuerablePromise(espnData)
     
     espnData.then(data => {
         createTable(data)
-    });
+    });*/
 
 }
 

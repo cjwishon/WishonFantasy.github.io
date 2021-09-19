@@ -72,7 +72,7 @@
                             </div>                            
                         </div>
                         <br>
-                        <a href="#" class="button primary" onclick="queryLeague()">Query</a>
+                        <a href="#" class="button primary" name="queryButton" id="queryButton">Query</a>
                         <br>
                         <br>
                         <!-- Data Table -->
@@ -143,6 +143,10 @@
         <script src="../assets/js/util.js"></script>
         <script src="../assets/js/main.js"></script>
         <script src="../assets/js/demo.js"></script>
-
+        <script src="../assets/js/client.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script>axios.defaults.baseURL = 'https://fantasy.espn.com/apis/v3/games/ffl/seasons/';</script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
+        <script type = "text/javascript">pageLoad()</script>
 	</body>
 </html>
