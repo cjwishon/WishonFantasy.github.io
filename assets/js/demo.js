@@ -18,12 +18,27 @@ function pageLoad() {
 function queryLeague() {
 
     var leagueIDElement = document.getElementById("league_id");
-    //leagueId = leagueIDElement.value;
-    leagueId = 1774020;
+    leagueId = leagueIDElement.value;
+    //leagueId = 1774020;
     var yearElement = document.getElementById("year");
     year = yearElement.value;
 
-    const client = new Client({ espnS2, SWID, leagueId});
+    document.cookie = "espn_s2=" + espnS2 + ";SWID=" + SWID + ";domain=https://fantasy.espn.com";
+
+    document.cookie = "espn_s2=" + espnS2 + ";domain=https://fantasy.espn.com";
+    document.cookie = "SWID=" + SWID + ";domain=https://fantasy.espn.com";
+
+    console.log(document.cookie);
+
+    var espnData = fetch('https://fantasy.espn.com/apis/v3/games/ffl/seasons/' + year + '/segments/0/leagues/' + leagueId + '?view=mTeam',{
+        credentials: 'same-origin'
+    }).then(response => response.json());
+      espnData.then(data => {
+        console.log(data);
+    });
+
+
+    /*const client = new Client({ espnS2, SWID, leagueId});
 
     console.log(client);
 
@@ -31,7 +46,7 @@ function queryLeague() {
 
     testData.then(data => {
         console.log(data);
-    });
+    });*/
 
 
 

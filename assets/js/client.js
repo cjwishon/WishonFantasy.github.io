@@ -210,8 +210,8 @@ class Client {
    */
   _buildAxiosConfig(config) {
     if ((this.espnS2 && this.SWID)) {
-      //const headers = { Cookie: `espn_s2=${this.espnS2}; SWID=${this.SWID};` };
-      //return _.merge({}, config, { headers, withCredentials: true });
+      const headers = { Cookie: `espn_s2=${this.espnS2}; SWID=${this.SWID};` };
+      return _.merge({}, config, { headers, withCredentials: true });
     }
 
     return config;

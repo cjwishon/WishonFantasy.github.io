@@ -480,7 +480,7 @@ function updatePage() {
     }
 
     playoffOddsSortArray.sort(function(a,b) {
-        return b['playoffOdds'] - a['playoffOdds']
+        return b['playoffOdds'] - a['playoffOdds'] || a["rank"] - b["rank"]
     });
 
     // Get the table body and clear the rows
@@ -1107,7 +1107,9 @@ function updatePage() {
     var scoreList = []
     for (var i = 0; i<numberTeams; i++){
         for(var j = 0; j < seasonDataYear.standings[i].scores.length; j++){
-            scoreList.push(seasonDataYear.standings[i].scores[j])
+            if(seasonDataYear.standings[i].scores[j] > 0){
+                scoreList.push(seasonDataYear.standings[i].scores[j])
+            }
         }
     }
     scoreList.sort(function(a,b){
